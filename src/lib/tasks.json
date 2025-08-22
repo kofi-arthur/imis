@@ -1,0 +1,298 @@
+[
+  {
+    "id": "1",
+    "title": "Fabricate Steel Framework",
+    "description": "Cut, weld, and assemble steel framework components for the storage facility.",
+    "status": "In Progress",
+    "priority": "High",
+    "assignedTo": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ],
+    "startDate": "2025-07-15T09:00:00Z",
+    "dueDate": "2025-07-18T17:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": null,
+    "endDate": null
+  },
+  {
+    "id": "2",
+    "title": "Install Piping System",
+    "description": "Lay and weld high-pressure pipes for the main process line.",
+    "status": "Completed",
+    "priority": "High",
+    "assignedTo": [
+      {
+        "displayName": "Jane Smith",
+        "mail": "jane.smith@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-05T08:00:00Z",
+    "dueDate": "2025-07-25T17:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": null,
+    "endDate": "2025-07-13T11:00:00Z"
+  },
+  {
+    "id": "3",
+    "title": "Conduct Pressure Testing",
+    "description": "Perform hydrostatic testing to ensure piping system integrity.",
+    "status": "Todo",
+    "priority": "Medium",
+    "assignedTo": [
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com"
+      }
+    ],
+    "startDate": null,
+    "dueDate": "2025-07-06T16:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": null,
+    "endDate": null
+  },
+  {
+    "id": "4",
+    "title": "Erect Storage Tank Shell",
+    "description": "Assemble cylindrical wall plates for the vertical storage tank.",
+    "status": "In Progress",
+    "priority": "High",
+    "assignedTo": [
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-06T09:00:00Z",
+    "dueDate": "2025-07-05T15:00:00Z",
+    "dateCreated": "2025-07-01T09:00:00Z",
+    "parentId": null,
+    "endDate": null
+  },
+  {
+    "id": "5",
+    "title": "Optimize Welding Sequence",
+    "description": "Review and update welding procedure for better efficiency.",
+    "status": "Todo",
+    "priority": "Medium",
+    "assignedTo": [
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-20T07:00:00Z",
+    "dueDate": "2025-07-26T14:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": null,
+    "endDate": null
+  },
+  {
+    "id": "6",
+    "title": "Draft Tank Foundation Layout",
+    "description": "Prepare engineering drawings for reinforced concrete tank base.",
+    "status": "Completed",
+    "priority": "Low",
+    "assignedTo": [
+      {
+        "displayName": "Emily Carter",
+        "mail": "emily.carter@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-14T12:00:00Z",
+    "dueDate": "2025-07-24T12:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "1",
+    "endDate": "2025-07-15T11:45:00Z"
+  },
+  {
+    "id": "7",
+    "title": "Weld Support Brackets",
+    "description": "Attach structural supports to primary beams and joints.",
+    "status": "Todo",
+    "priority": "Medium",
+    "assignedTo": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-16T11:00:00Z",
+    "dueDate": "2025-07-05T17:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "1",
+    "endDate": null
+  },
+  {
+    "id": "8",
+    "title": "Prepare Equipment Pad",
+    "description": "Excavate and pour pad for mechanical pump and compressor installation.",
+    "status": "In Progress",
+    "priority": "High",
+    "assignedTo": [
+      {
+        "displayName": "Jane Smith",
+        "mail": "jane.smith@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-17T09:00:00Z",
+    "dueDate": "2025-07-23T17:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "2",
+    "endDate": null
+  },
+  {
+    "id": "9",
+    "title": "Install Safety Access Platforms",
+    "description": "Fabricate and mount steel platforms for tank and piping access.",
+    "status": "Todo",
+    "priority": "High",
+    "assignedTo": [
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-21T10:00:00Z",
+    "dueDate": "2025-07-28T17:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "2",
+    "endDate": null
+  },
+  {
+    "id": "10",
+    "title": "Rectify Platform Misalignment",
+    "description": "Adjust steel platform to correct anchor point discrepancies.",
+    "status": "Todo",
+    "priority": "Low",
+    "assignedTo": [
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-22T08:00:00Z",
+    "dueDate": "2025-07-27T16:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "9",
+    "endDate": null
+  },
+  {
+    "id": "11",
+    "title": "Recheck Platform Bolt Torque",
+    "description": "Verify and tighten bolts on platform connections to spec.",
+    "status": "Todo",
+    "priority": "Low",
+    "assignedTo": [
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-04T08:00:00Z",
+    "dueDate": "2025-07-04T16:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "10",
+    "endDate": null
+  },
+  {
+    "id": "12",
+    "title": "Inspect Staircase Welding",
+    "description": "Review weld seams on access stairs for visual defects.",
+    "status": "Todo",
+    "priority": "Low",
+    "assignedTo": [
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-22T08:00:00Z",
+    "dueDate": "2025-07-27T16:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "11",
+    "endDate": null
+  },
+  {
+    "id": "13",
+    "title": "Apply Primer to Staircase",
+    "description": "Coat metal surfaces of the staircase with anti-rust primer.",
+    "status": "Todo",
+    "priority": "Low",
+    "assignedTo": [
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-22T08:00:00Z",
+    "dueDate": "2025-07-27T16:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "12",
+    "endDate": null
+  },
+  {
+    "id": "14",
+    "title": "Paint Final Stair Finish",
+    "description": "Spray final coat on stair sections as per color spec.",
+    "status": "Todo",
+    "priority": "Low",
+    "assignedTo": [
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-22T08:00:00Z",
+    "dueDate": "2025-07-27T16:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "13",
+    "endDate": null
+  },
+  {
+    "id": "15",
+    "title": "Add Anti-Slip Treads",
+    "description": "Install safety tread plates on stairway landings and steps.",
+    "status": "Todo",
+    "priority": "Low",
+    "assignedTo": [
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com"
+      }
+    ],
+    "startDate": "2025-07-22T08:00:00Z",
+    "dueDate": "2025-07-27T16:00:00Z",
+    "dateCreated": "2025-07-15T09:00:00Z",
+    "parentId": "14",
+    "endDate": null
+  }
+]

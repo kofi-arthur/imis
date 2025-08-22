@@ -1,0 +1,235 @@
+.generalLayout {
+  width: 100%;
+  height: calc(100% - 1rem);
+  padding: 1rem;
+  overflow: auto;
+  background: var(--tile-bg);
+  margin-top: 1rem;
+  border-radius: 0.9rem;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.pageSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-inline: 1rem;
+
+  .saveBtn {
+    width: fit-content;
+    background: var(--primary);
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem;
+    border-radius: 0.35rem;
+    border: none;
+    cursor: pointer;
+    transition: 0.12s ease-out;
+  }
+}
+
+.sectionTitle {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-light);
+  margin-bottom: 0.5rem;
+}
+
+.field {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.7rem;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-light);
+    margin-bottom: 0.3rem;
+    user-select: none;
+  }
+
+  textarea {
+    width: 100%;
+    height: 100px;
+    max-height: 200px;
+    border: 1px solid var(--border-light);
+    outline: none;
+    background: var(--bg);
+    border-radius: 0.45rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    resize: none;
+    overflow: hidden;
+  }
+}
+
+.dangerField {
+  width: 500px;
+  border: 1px solid crimson;
+  padding: 1rem;
+  border-radius: 0.45rem;
+  margin-bottom: 1rem;
+  position: relative;
+
+  p {
+    font-size: 0.9rem;
+    color: var(--color-light);
+    margin-bottom: 0.5rem;
+  }
+
+  button {
+    background: crimson;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    transform: 0.1s ease-out;
+
+    &:hover {
+      background: rgb(194, 18, 53);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+.inputField {
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.35rem;
+  border: 1px solid var(--border-light);
+  background: var(--tile-bg);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+hr {
+  width: 100%;
+  border-top: 1px dashed var(--border-light);
+  margin-block: 1rem;
+}
+
+.comingSoonLayout {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    opacity: 0.3;
+  }
+}
+
+.transferProjectLayout {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background: #0005;
+  display: grid;
+  place-content: center;
+
+  .trasferProject {
+    width: 500px;
+    background: var(--tile-bg);
+    border-radius: 0.9rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      line-height: 1.3rem;
+      font-weight: 500;
+    }
+
+    .closeBtn {
+      width: 30px;
+      height: 30px;
+      border-radius: 0.35rem;
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: 0.1s;
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: var(--color-light);
+    }
+
+    select {
+      padding: 0.5rem;
+      border-radius: 0.35rem;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .acknowledgement {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--color-light);
+      user-select: none;
+    }
+
+    .delteBtn {
+      width: 100%;
+      background: crimson;
+      color: white;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.5rem 2rem;
+      border-radius: 0.35rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.12s ease-out;
+      transform: 0.1s ease-out;
+
+      &:hover {
+        background: rgb(190, 17, 52);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}

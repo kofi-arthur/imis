@@ -1,0 +1,888 @@
+.dashboardLayout {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.overview {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--tile-bg);
+  padding: 1rem 1rem;
+  border-radius: 0.9rem;
+
+  & > * {
+    border-radius: 0.45rem;
+    border: 1px solid var(--border);
+    padding: 1rem;
+  }
+
+  .cardTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+      font-size: 1.2rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+
+  .projectOverview {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .projectDescription {
+        font-size: 0.9rem;
+        color: var(--color-light);
+      }
+    }
+
+    .metaData {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      .data {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        h4 {
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+
+        p {
+          font-size: 0.9rem;
+          color: var(--color);
+        }
+      }
+
+      .data:nth-child(2) {
+        p {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
+  .projectCard {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .info {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+
+        h4 {
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+
+        span {
+          text-align: right;
+          font-size: 0.9rem;
+          color: var(--color-light);
+        }
+      }
+    }
+
+    .progressBar {
+      width: 100%;
+      height: 10px;
+      background: var(--border-light);
+      border-radius: 0.3rem;
+      overflow: hidden;
+
+      .progress {
+        border-radius: 0.3rem;
+        height: 100%;
+        background: var(--primary);
+      }
+    }
+  }
+}
+
+.tasksOverview {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-radius: 0.9rem;
+}
+
+.milestoneCard {
+  flex: 1 1 300px;
+  background: var(--tile-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-light);
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        font-size: 1.2rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+    }
+
+    .viewAllbtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.5rem;
+      border: 1px solid var(--border);
+      background: none;
+      border-radius: 0.35rem;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  .milestoneOverview {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .progressBar {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+
+      .info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        p {
+          font-size: 0.9rem;
+          color: var(--color-light);
+        }
+
+        span {
+          font-size: 0.9rem;
+          color: var(--color-light);
+        }
+      }
+
+      .progress {
+        width: 100%;
+        height: 10px;
+        background: var(--border-light);
+        border-radius: 0.3rem;
+        overflow: hidden;
+
+        .bar {
+          border-radius: 0.3rem;
+          height: 100%;
+          background: var(--color);
+        }
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.taskChartCard {
+  flex: 1 1 300px;
+  background: var(--tile-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-light);
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        font-size: 1.2rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .content {
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+
+    .chart {
+      flex: 1 1 60% !important;
+      height: 300px !important;
+      max-height: 300px !important;
+    }
+
+    .info {
+      flex: 1 1 auto !important;
+
+      .title {
+        font-size: 0.9rem;
+        color: var(--color-light);
+      }
+
+      h2 {
+        font-size: 3rem;
+        line-height: 3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .legendContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .legend {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          .color {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+          }
+
+          h4 {
+            font-size: 0.8rem;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+.recentTaskPreview {
+  flex: 1 1 300px;
+  background: var(--tile-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-light);
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        font-size: 1.2rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.dualLayout {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  .leftCol {
+    flex: 1 1 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .rightCol {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.layoutCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--tile-bg);
+  padding: 1rem 1rem;
+  border-radius: 0.9rem;
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+      font-size: 1.2rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    &.recentActivity {
+      flex-direction: column;
+    }
+  }
+}
+
+/* components */
+.teamMember {
+  flex: 1 1 45%;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--tile-bg);
+  padding: 1rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-light);
+
+  .topRow {
+    display: flex;
+    gap: 0.5rem;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: var(--color-light);
+      }
+
+      span {
+        margin-top: 0.5rem;
+        min-width: 50px;
+        max-width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--color-light);
+        border-radius: 32px;
+        border: 1px solid var(--border);
+        padding: 0.2rem 0.5rem;
+      }
+    }
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+
+    button,
+    a {
+      width: 100%;
+      border-radius: 0.35rem;
+      border: 1px solid var(--border-light);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--tile-bg);
+      color: var(--color);
+      cursor: pointer;
+
+      &:hover {
+        background: var(--hover-tile);
+      }
+    }
+  }
+}
+
+.attachedFile {
+  flex: 1 1 100%;
+  display: grid;
+  grid-template-columns: auto 1fr 40px;
+  align-items: center;
+  background: var(--tile-bg);
+  padding: 1rem 1rem;
+  gap: 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-light);
+
+  .fileIcon {
+    width: fit-content;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .fileInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: var(--color-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        font-size: 4px;
+      }
+    }
+
+    span {
+      width: fit-content;
+      font-size: 0.7rem;
+      color: var(--color-light);
+    }
+  }
+
+  .downloadBtn {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border-radius: 0.35rem;
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.15s ease-out;
+
+    &:hover {
+      background: var(--hover-tile);
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}
+
+.recentMessage {
+  flex: 1 1 100%;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 0.7rem;
+  align-items: center;
+  background: var(--tile-bg);
+  padding: 1rem 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: 0.45rem;
+  transition: 0.15s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px var(--box-shadow);
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--border);
+    position: relative;
+
+    .onlineStatus {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 15px;
+      height: 15px;
+      border: 2px solid var(--tile-bg);
+      border-radius: 50%;
+      background: var(--online);
+    }
+  }
+
+  .messageInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+
+    .top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+
+      h4 {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      span {
+        font-size: 0.8rem;
+        color: var(--color-light);
+      }
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: var(--color-light);
+    }
+  }
+}
+
+.activity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-inline: 1rem;
+  padding-bottom: 1rem;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 1px;
+    height: 100%;
+    border-left: 1px solid var(--border);
+    position: absolute;
+    top: calc(4.25px);
+    left: calc(1rem + 4.25px);
+  }
+
+  &:last-child::before {
+    display: none;
+  }
+
+  .timeline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+
+    i {
+      color: var(--border);
+      font-size: 10px;
+    }
+
+    span {
+      font-size: 0.8rem;
+      color: var(--color-light);
+    }
+  }
+
+  .content {
+    margin-left: calc(10px + 0.5rem);
+
+    p {
+      font-size: 0.9rem;
+      color: var(--color);
+
+      span {
+        font-weight: 600;
+        color: var(--color);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.milestone {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: 0.35rem;
+
+  i {
+    font-size: 1rem;
+  }
+
+  .info {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    h4 {
+      flex: 1 1 auto;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1rem;
+    }
+
+    .dueDate {
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      color: var(--color-light);
+
+      i {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+.milestoneDetail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: 0.35rem;
+
+  i {
+    font-size: 1rem;
+  }
+
+  .info {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    h4 {
+      flex: 1 1 auto;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1rem;
+    }
+
+    .description {
+      padding-bottom: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .dueDate {
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      color: var(--color-light);
+
+      i {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+.tooltip {
+  background: var(--tile-bg);
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.45rem;
+  /* border: 1px solid var(--border); */
+  box-shadow: 0 10px 15px var(--box-shadow);
+
+  h4 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-light);
+  }
+}
+
+.task {
+  padding: 0.5rem 1rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+
+  .leftCol {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  }
+
+  .rightCol {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .duedate {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.8rem;
+      color: var(--color-light);
+    }
+  }
+}
+
+.milestoneViewerLayout {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .milestoneViewer {
+    width: 500px;
+    background: var(--tile-bg);
+    padding: 1rem;
+    border-radius: 0.9rem;
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: var(--dropdown-animation);
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      button {
+        width: 30px;
+        height: 30px;
+        border-radius: 0.35rem;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.1s ease-out;
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+
+    .content {
+      width: 100%;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow-y: auto;
+    }
+  }
+}

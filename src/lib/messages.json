@@ -1,0 +1,182 @@
+[
+  {
+    "sender": {
+      "displayName": "Alice Smith",
+      "avatar": null,
+      "mail": "alice.smith@wayoeltd.com"
+    },
+    "message": "Hey, have you reviewed the site plan?",
+    "timeSent": "2025-07-04T08:12:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Kevin Williams",
+      "avatar": null,
+      "mail": "kevin.williams@wayoeltd.com"
+    },
+    "message": "Machine maintenance completed.",
+    "timeSent": "2025-07-04T08:25:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Laura Martin",
+      "avatar": null,
+      "mail": "laura.martin@wayoeltd.com"
+    },
+    "message": "HSE audit starts at 10:00 AM sharp.",
+    "timeSent": "2025-07-04T08:30:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Frank Young",
+      "avatar": null,
+      "mail": "frank.young@wayoeltd.com"
+    },
+    "message": "Inventory sheet updated in the system.",
+    "timeSent": "2025-07-04T08:35:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Brian White",
+      "avatar": null,
+      "mail": "brian.white@wayoeltd.com"
+    },
+    "message": "QA report has been uploaded.",
+    "timeSent": "2025-07-04T08:38:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Hannah Green",
+      "avatar": null,
+      "mail": "hannah.green@wayoeltd.com"
+    },
+    "message": "I’m on-site now, ready for inspection.",
+    "timeSent": "2025-07-04T08:40:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Grace Clark",
+      "avatar": null,
+      "mail": "grace.clark@wayoeltd.com"
+    },
+    "message": "Can we reschedule the admin meeting?",
+    "timeSent": "2025-07-04T08:43:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Daniel Lee",
+      "avatar": null,
+      "mail": "daniel.lee@wayoeltd.com"
+    },
+    "message": "Pipe installation completed on Level 2.",
+    "timeSent": "2025-07-04T08:45:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Chris Baker",
+      "avatar": null,
+      "mail": "chris.baker@wayoeltd.com"
+    },
+    "message": "Electrical layout needs approval.",
+    "timeSent": "2025-07-04T08:48:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "John Doe",
+      "avatar": null,
+      "mail": "john.doe@wayoeltd.com"
+    },
+    "message": "Client has requested a new timeline.",
+    "timeSent": "2025-07-04T08:50:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Megan Murphy",
+      "avatar": null,
+      "mail": "megan.murphy@wayoeltd.com"
+    },
+    "message": "Server backup ran successfully.",
+    "timeSent": "2025-07-04T08:55:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Emma Taylor",
+      "avatar": null,
+      "mail": "emma.taylor@wayoeltd.com"
+    },
+    "message": "Welding schedule updated for tomorrow.",
+    "timeSent": "2025-07-04T09:00:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Rachel Thomas",
+      "avatar": null,
+      "mail": "rachel.thomas@wayoeltd.com"
+    },
+    "message": "Photo report sent via email.",
+    "timeSent": "2025-07-04T09:05:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Sophia Lopez",
+      "avatar": null,
+      "mail": "sophia.lopez@wayoeltd.com"
+    },
+    "message": "HR form submission deadline extended.",
+    "timeSent": "2025-07-04T09:10:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "David King",
+      "avatar": null,
+      "mail": "david.king@wayoeltd.com"
+    },
+    "message": "Cutting tools will arrive by noon.",
+    "timeSent": "2025-07-04T09:15:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Nathan Roberts",
+      "avatar": null,
+      "mail": "nathan.roberts@wayoeltd.com"
+    },
+    "message": "New design uploaded for review.",
+    "timeSent": "2025-07-04T09:20:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Kim Nguyen",
+      "avatar": null,
+      "mail": "kim.nguyen@wayoeltd.com"
+    },
+    "message": "We’re short on site materials again.",
+    "timeSent": "2025-07-04T09:23:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "James Ward",
+      "avatar": null,
+      "mail": "james.ward@wayoeltd.com"
+    },
+    "message": "Updated project timeline ready.",
+    "timeSent": "2025-07-04T09:25:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Paul Scott",
+      "avatar": null,
+      "mail": "paul.scott@wayoeltd.com"
+    },
+    "message": "Meeting with contractors rescheduled.",
+    "timeSent": "2025-07-04T09:28:00Z"
+  },
+  {
+    "sender": {
+      "displayName": "Alice Smith",
+      "avatar": null,
+      "mail": "alice.smith@wayoeltd.com"
+    },
+    "message": "Don’t forget the client walkthrough.",
+    "timeSent": "2025-07-04T09:30:00Z"
+  }
+]

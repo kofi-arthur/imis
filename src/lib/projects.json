@@ -1,0 +1,442 @@
+[
+  {
+    "projectId": "1",
+    "name": "Tank Installation - Site A",
+    "status": "In Progress",
+    "progress": 45,
+    "dueDate": "2025-07-20T09:00:00Z",
+    "client": {
+      "displayName": "Acme Corp",
+      "mail": "jane.doe@acmecorp.com",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  },
+  {
+    "projectId": "2",
+    "name": "Piping Refurbishment",
+    "status": "Pending",
+    "progress": 0,
+    "dueDate": "2025-08-15T10:00:00Z",
+    "client": {
+      "displayName": "TechFlow Ltd.",
+      "mail": "michael@techflow.com",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  },
+  {
+    "projectId": "3",
+    "name": "Welding & Fabrication - Unit 3",
+    "status": "Completed",
+    "progress": 100,
+    "dueDate": "2025-07-20T09:00:00Z",
+    "client": {
+      "displayName": "BuildRight",
+      "mail": "contact@buildright.io",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  },
+  {
+    "projectId": "4",
+    "name": "Maintenance Contract - Q3",
+    "status": "On Hold",
+    "progress": 10,
+    "dueDate": "2025-10-05T09:00:00Z",
+    "client": {
+      "displayName": "Prime Engineering",
+      "mail": "pm@primeeng.com",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  },
+  {
+    "projectId": "5",
+    "name": "Site Prep & Clearance",
+    "status": "In Progress",
+    "progress": 67,
+    "dueDate": "2025-08-30T08:00:00Z",
+    "client": {
+      "displayName": "GreenFields Ltd.",
+      "mail": "info@greenfields.org",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  },
+  {
+    "projectId": "6",
+    "name": "Pipeline Extension Phase 2",
+    "status": "Pending",
+    "progress": 0,
+    "dueDate": "2025-09-20T09:00:00Z",
+    "client": {
+      "displayName": "UrbanWorks",
+      "mail": "admin@urbanworks.net",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  },
+  {
+    "projectId": "7",
+    "name": "Steel Framework Assembly",
+    "status": "In Progress",
+    "progress": 53,
+    "dueDate": "2025-08-18T09:00:00Z",
+    "client": {
+      "displayName": "HighRise Ltd.",
+      "mail": "hrise@buildmail.com",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  },
+  {
+    "projectId": "8",
+    "name": "Warehouse Roof Repairs",
+    "status": "Completed",
+    "progress": 100,
+    "dueDate": "2025-07-28T09:00:00Z",
+    "client": {
+      "displayName": "Metro Logistics",
+      "mail": "support@metro.com",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  },
+  {
+    "projectId": "9",
+    "name": "Fire Safety Installation",
+    "status": "In Progress",
+    "progress": 25,
+    "dueDate": "2025-09-10T09:00:00Z",
+    "client": {
+      "displayName": "FireGuard Co.",
+      "mail": "service@fireguard.co",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  },
+  {
+    "projectId": "10",
+    "name": "Drainage Works",
+    "status": "Pending",
+    "progress": 0,
+    "dueDate": "2025-10-12T09:00:00Z",
+    "client": {
+      "displayName": "City Developers",
+      "mail": "projects@citydevs.org",
+      "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+    },
+    "members": [
+      {
+        "displayName": "John Doe",
+        "mail": "john.doe@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Paul Arthur",
+        "mail": "paul.arthur@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee2668b5e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "Sarah Lee",
+        "mail": "sarah.lee@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Michael Brown",
+        "mail": "michael.brown@wayoeltd.com",
+        "avatar": null
+      },
+      {
+        "displayName": "Emily Johnson",
+        "mail": "emily.johnson@wayoeltd.com",
+        "avatar": "https://srv432552.hstgr.cloud/images/default/43864ee7a32972e3cd285baa9af2a198.jpg"
+      },
+      {
+        "displayName": "David Kim",
+        "mail": "david.kim@wayoeltd.com",
+        "avatar": null
+      }
+    ]
+  }
+]

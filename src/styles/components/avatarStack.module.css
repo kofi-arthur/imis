@@ -1,0 +1,151 @@
+.avatarStack {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: -50px;
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid var(--tile-bg);
+    object-fit: cover;
+    margin-left: -10px;
+    z-index: 1;
+    transition: transform 0.15s ease-out;
+
+    &:hover {
+      transform: scale(1.1);
+      z-index: 10;
+    }
+  }
+
+  .nameAvatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    background: pink;
+    border: 3px solid var(--tile-bg); /* optional: creates a border around each avatar */
+    margin-left: -10px; /* this creates the overlap */
+    background-color: #ccc;
+    z-index: 1;
+    transition: transform 0.15s ease-out;
+
+    &:hover {
+      transform: scale(1.1);
+      z-index: 10;
+    }
+
+    p {
+      font-weight: 600;
+      font-size: 0.8rem;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      user-select: none;
+      color: white;
+    }
+  }
+
+  .extraAvatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    border: 3px solid var(--tile-bg);
+    margin-left: -10px;
+    z-index: 1;
+    transition: transform 0.2s;
+    background: #ccc;
+    color: white;
+
+    span {
+      font-size: 0.8rem;
+      font-weight: 600;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+  }
+}
+
+.avatarContainer {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+
+  .avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.15s ease-out;
+  }
+
+  .nameAvatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    background: pink;
+    background-color: #ccc;
+    z-index: 1;
+    transition: transform 0.15s ease-out;
+
+    p {
+      font-weight: 600;
+      font-size: 0.8rem;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      user-select: none;
+      color: white;
+    }
+  }
+}
+
+.userAvatarContainer {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--border);
+  position: relative;
+
+  img {
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  .nameAvatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      font-weight: 600;
+      color: white;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+  }
+
+  .onlineStatus {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--tile-bg);
+    border-radius: 50%;
+    background: var(--online);
+  }
+}

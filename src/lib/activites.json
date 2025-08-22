@@ -1,0 +1,202 @@
+[
+  {
+    "date": "2025-07-04T07:45:00Z",
+    "actor": {
+      "displayName": "Alice Smith",
+      "mail": "alice.smith@company.com",
+      "department": "Engineering",
+      "designation": "Project Manager"
+    },
+    "action": "uploaded project_plan.pdf to the Engineering folder"
+  },
+  {
+    "date": "2025-07-04T08:05:00Z",
+    "actor": {
+      "displayName": "Kevin Williams",
+      "mail": "kevin.williams@company.com",
+      "department": "Maintenance",
+      "designation": "Technician"
+    },
+    "action": "marked maintenance checklist as completed"
+  },
+  {
+    "date": "2025-07-04T08:12:00Z",
+    "actor": {
+      "displayName": "Laura Martin",
+      "mail": "laura.martin@company.com",
+      "department": "HSE",
+      "designation": "Safety Officer"
+    },
+    "action": "updated safety policy document"
+  },
+  {
+    "date": "2025-07-04T08:18:00Z",
+    "actor": {
+      "displayName": "Frank Young",
+      "mail": "frank.young@company.com",
+      "department": "Inventory",
+      "designation": "Storekeeper"
+    },
+    "action": "added 30 items to the inventory system"
+  },
+  {
+    "date": "2025-07-04T08:24:00Z",
+    "actor": {
+      "displayName": "Brian White",
+      "mail": "brian.white@company.com",
+      "department": "Quality Assurance",
+      "designation": "QA/QC Officer"
+    },
+    "action": "submitted QA inspection form"
+  },
+  {
+    "date": "2025-07-04T08:30:00Z",
+    "actor": {
+      "displayName": "Hannah Green",
+      "mail": "hannah.green@company.com",
+      "department": "Civil",
+      "designation": "Civil Engineer"
+    },
+    "action": "approved civil layout for foundation phase"
+  },
+  {
+    "date": "2025-07-04T08:35:00Z",
+    "actor": {
+      "displayName": "Grace Clark",
+      "mail": "grace.clark@company.com",
+      "department": "Admin",
+      "designation": "Administrator"
+    },
+    "action": "rescheduled Admin team meeting"
+  },
+  {
+    "date": "2025-07-04T08:42:00Z",
+    "actor": {
+      "displayName": "Daniel Lee",
+      "mail": "daniel.lee@company.com",
+      "department": "Piping",
+      "designation": "Site Engineer"
+    },
+    "action": "closed piping task on Level 2"
+  },
+  {
+    "date": "2025-07-04T08:50:00Z",
+    "actor": {
+      "displayName": "Chris Baker",
+      "mail": "chris.baker@company.com",
+      "department": "Electrical",
+      "designation": "Electrician"
+    },
+    "action": "requested approval for electrical diagram"
+  },
+  {
+    "date": "2025-07-04T09:00:00Z",
+    "actor": {
+      "displayName": "John Doe",
+      "mail": "john.doe@company.com",
+      "department": "Construction",
+      "designation": "Project Coordinator"
+    },
+    "action": "shared updated project schedule"
+  },
+  {
+    "date": "2025-07-04T09:08:00Z",
+    "actor": {
+      "displayName": "Megan Murphy",
+      "mail": "megan.murphy@company.com",
+      "department": "IT",
+      "designation": "IT Support"
+    },
+    "action": "performed system backup"
+  },
+  {
+    "date": "2025-07-04T09:12:00Z",
+    "actor": {
+      "displayName": "Emma Taylor",
+      "mail": "emma.taylor@company.com",
+      "department": "Welding",
+      "designation": "Welder"
+    },
+    "action": "logged weld inspection results"
+  },
+  {
+    "date": "2025-07-04T09:16:00Z",
+    "actor": {
+      "displayName": "Rachel Thomas",
+      "mail": "rachel.thomas@company.com",
+      "department": "Tank Construction",
+      "designation": "Foreman"
+    },
+    "action": "uploaded site progress photos"
+  },
+  {
+    "date": "2025-07-04T09:20:00Z",
+    "actor": {
+      "displayName": "Sophia Lopez",
+      "mail": "sophia.lopez@company.com",
+      "department": "Human Resources",
+      "designation": "HR Officer"
+    },
+    "action": "extended deadline for HR document submissions"
+  },
+  {
+    "date": "2025-07-04T09:24:00Z",
+    "actor": {
+      "displayName": "David King",
+      "mail": "david.king@company.com",
+      "department": "Metal Works",
+      "designation": "Fabricator"
+    },
+    "action": "confirmed receipt of steel parts delivery"
+  },
+  {
+    "date": "2025-07-04T09:28:00Z",
+    "actor": {
+      "displayName": "Nathan Roberts",
+      "mail": "nathan.roberts@company.com",
+      "department": "Design",
+      "designation": "CAD Designer"
+    },
+    "action": "uploaded a new CAD drawing"
+  },
+  {
+    "date": "2025-07-04T09:30:00Z",
+    "actor": {
+      "displayName": "Kim Nguyen",
+      "mail": "kim.nguyen@company.com",
+      "department": "Procurement",
+      "designation": "Logistics Officer"
+    },
+    "action": "added new supplier to procurement list"
+  },
+  {
+    "date": "2025-07-04T09:35:00Z",
+    "actor": {
+      "displayName": "James Ward",
+      "mail": "james.ward@company.com",
+      "department": "Planning",
+      "designation": "Planner"
+    },
+    "action": "updated project Gantt chart"
+  },
+  {
+    "date": "2025-07-04T09:38:00Z",
+    "actor": {
+      "displayName": "Paul Scott",
+      "mail": "paul.scott@company.com",
+      "department": "Engineering",
+      "designation": "Mechanical Engineer"
+    },
+    "action": "created a task for contractor briefing"
+  },
+  {
+    "date": "2025-07-04T09:40:00Z",
+    "actor": {
+      "displayName": "Alice Smith",
+      "mail": "alice.smith@company.com",
+      "department": "Engineering",
+      "designation": "Project Manager"
+    },
+    "action": "sent meeting invite to the project team"
+  }
+]

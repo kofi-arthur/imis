@@ -1,0 +1,40 @@
+.projectSettingsLayout {
+  width: 100%;
+  height: calc(100vh - 95px);
+  display: grid;
+  grid-template-rows: 35px 50px 1fr;
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .navigationTab {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-light);
+
+    .navigationTabItem {
+      width: fit-content;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding-inline: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--color);
+      transition: 0.15s ease-out;
+      user-select: none;
+      -webkit-user-select: none;
+
+      &.active {
+        border-bottom: 3px solid var(--primary);
+        color: var(--primary);
+      }
+    }
+  }
+}

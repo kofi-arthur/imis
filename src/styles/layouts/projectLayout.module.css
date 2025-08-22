@@ -1,0 +1,119 @@
+.projectLayout {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  background: var(--bg);
+}
+
+.navigation {
+  width: 280px;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 70px 1fr 1fr 50px;
+  row-gap: 1rem;
+  background: var(--tile-bg);
+  padding: 1rem;
+
+  .navigationLogo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    img {
+      width: 100px;
+      height: 40px;
+    }
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .projects {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+
+    hr {
+      border: 1px dashed var(--border-light);
+    }
+
+    .project {
+      width: 100%;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      border-radius: 0.35rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+
+      h4 {
+        line-clamp: 1;
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      &:hover {
+        background: var(--hover-tile);
+      }
+    }
+  }
+
+  .title {
+    font-size: 0.8rem;
+    color: var(--color-light);
+  }
+
+  .logoutBtn {
+    width: 100%;
+    height: 50px;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: var(--color-light);
+    background: none;
+    border: none;
+
+    &:hover {
+      background: var(--hover-tile);
+    }
+
+    i {
+      width: 25px;
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.mainLayout {
+  width: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  flex-grow: 1;
+  position: relative;
+
+  .content {
+    padding-inline: 1rem;
+  }
+}

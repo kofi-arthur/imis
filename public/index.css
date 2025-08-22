@@ -1,0 +1,243 @@
+:root {
+  /* === Core Brand Color === */
+  --primary: #0087c8;
+
+  /* === Color Scheme (based on --primary) === */
+  --color: #1b1b1b;
+  --color-light: #4a707f;
+  --disabled: #a0b8c4;
+
+  /* === Backgrounds & UI Elements === */
+  --bg: #edf2f5;
+  --bg-blur: #f5fafd88;
+
+  --test: #c5ecff;
+
+  --tile-bg: #ffffff;
+  --tile-bg-l: #e8f1f6;
+  --input-bg: #d9ecf4;
+
+  --hover-primary-dark: #006a9f;
+  --hover-primary-light: #cceaf8;
+
+  --hover-tile: #edf6fa;
+  --hover-tile-light: #d8f1ff;
+
+  /* === Borders & Shadows === */
+  --border: #b5d0dc;
+  --border-light: #cfe1ea;
+  --border-radius: 0.9rem;
+  --box-shadow: #00000014;
+
+  /* === Status === */
+  --todo: #666666;
+  --todo-bg: #66666625;
+
+  --in-progress: #0070f3;
+  --in-progress-bg: #0070f325;
+
+  --completed: #2cb64c;
+  --completed-bg: #34d05825;
+
+  --upcoming: var(--color);
+  --upcoming-bg: transparent;
+
+  --delayed: #d10000;
+  --delayed-bg: #ff000032;
+
+  /* === Online Status === */
+  --online: #00ad00;
+  --offline: #ff0000;
+
+  /* User Roles */
+  --role-bg: #9e9e9e1f;
+  --admin: #ff0000;
+  --owner: #b400e0;
+  --planner: #22ce00;
+  --manager: #ffae00;
+  --contributor: #0087c8;
+  --viewer: #797979;
+
+  /* === Priority === */
+  --low: #0087c8;
+  --medium-priority: #ff9900;
+  --high: crimson;
+
+  /* === Toast === */
+  --error: crimson;
+  --success: #00ad00;
+  --warn: #ff9900;
+
+  /* === Selection === */
+  --selection-color: #cceaf8;
+
+  /* === Button Colors === */
+  --delete-bg: #bb0000;
+  --hover-delete: #a30000;
+
+  /* === Typography Sizes === */
+  --tiny: 0.7rem;
+  --small: 0.8rem;
+  --regular: 0.9rem;
+  --medium: 1rem;
+  --large: 1.2rem;
+  --extra-large: 2rem;
+
+  /* animations */
+  --dropdown-animation: dropdown 0.15s ease-out forwards;
+  --zoom-in-animation: zoomIn 0.15s ease-out forwards;
+  --fade-in-animation: fadeIn 0.1s ease-out forwards;
+  --slide-in-animation: slideIn 0.15s ease-out forwards;
+}
+
+:root[data-theme="dark"] {
+  /* === Core Brand Color === */
+  --primary: #0087c8;
+
+  /* === Color Scheme (based on --primary) === */
+  --color: #f0f4f8;
+  --color-light: #a6c9dd;
+  --disabled: #446a84;
+
+  /* === Backgrounds & UI Elements === */
+  --bg: #0b1e29; /* Very dark blueish tone */
+  --bg-blur: #0b1e29b0;
+
+  --tile-bg: #102837;
+  --tile-bg-l: #17374b;
+  --input-bg: #1b3e56;
+
+  --hover-primary-dark: #006ca3; /* Darker version of primary */
+  --hover-primary-light: #2a9bd6; /* Lighter tint of primary */
+
+  --hover-tile: #1a3243;
+  --hover-tile-light: #235472;
+
+  /* === Borders & Shadows === */
+  --border: #235472;
+  --border-light: #2f6a8f;
+  --border-radius: 0.9rem;
+  --box-shadow: #00000055;
+
+  /* === Project & Task Status (unchanged for contrast) === */
+  --error: #ff4d4f;
+  --error-bg: #ff4d4f33;
+
+  --success: #00d100;
+
+  --warn: #ffbb00;
+
+  --folder: #f3b200;
+
+  --todo: #bbbbbb;
+  --todo-bg: #bbbbbb25;
+
+  --inprogress: #ffb000;
+  --inprogress-bg: #ffb00025;
+
+  --task-completed: #4dabf7;
+  --task-completed-bg: #4dabf725;
+
+  --project-completed: #2cb64c;
+  --project-completed-bg: #2cb64c25;
+
+  /* === Selection === */
+  --selection-color: #2a9bd655;
+
+  /* === Typography Sizes (unchanged) === */
+  --tiny: 0.7rem;
+  --small: 0.8rem;
+  --regular: 0.9rem;
+  --medium: 1rem;
+  --large: 1.2rem;
+  --extra-large: 2rem;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::selection {
+  background: var(--selection-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--color);
+}
+
+input:focus {
+  border: 1px solid var(--primary);
+  outline: 1px solid var(--primary);
+}
+
+img {
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@keyframes dropdown {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
