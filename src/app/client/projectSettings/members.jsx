@@ -576,7 +576,6 @@ export default function TeamMembers() {
             onClick={() => setIsDeletingMember(true)}
           >
             <i className="fal fa-trash"></i>
-            <p>Bulk Delete</p>
           </button>
 
           <hr className={styles.separator} />
