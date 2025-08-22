@@ -1,15 +1,16 @@
 import styles from "../../../styles/app/client/projectSettings/members.module.css";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { Avatar } from "../../../components/avatarStack";
-import { RoleComponent } from "../../../components/status";
 import DeleteConfirmationBox from "../../../components/confirmationBox";
 import { EmptyComponent } from "../../../components/error";
+import { RoleComponent } from "../../../components/status";
 import { warnToast } from "../../../components/toast";
 import { useProject } from "../../../contexts/projectContext";
 
+import { LoadingComponent } from "../../../../../iticket-new/src/components/loadingComponents";
 import {
   addUserToProject,
   deleteUserFromProject,
@@ -19,7 +20,6 @@ import {
   fetchRoles,
   fetchSystemUsers,
 } from "../../../services/api";
-import { LoadingComponent } from "../../../../../iticket-new/src/components/loadingComponents";
 
 const Members = ({
   user,
