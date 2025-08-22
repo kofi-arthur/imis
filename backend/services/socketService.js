@@ -1,6 +1,6 @@
 import { EventEmitter } from "events";
 import { Server } from "socket.io";
-import { corsConfig, optramisDB } from "../utils/config.js";
+import { corsConfig, imisDB } from "../utils/config.js";
 import {
   buildNotificationMessage,
   chunkArray,
@@ -38,7 +38,7 @@ export async function initializeSocketServer(server) {
 
     if (userId !== null && userId !== undefined) {
       const userInfo = await getUserInfo(userId);
-       connectionUser = {
+      connectionUser = {
         id: userInfo.id,
         displayName: userInfo.displayName,
         mail: userInfo.mail,
@@ -249,7 +249,7 @@ export async function initializeSocketServer(server) {
       try {
         const insertQuery = `INSERT INTO taskcomments (commentId, projectId, taskId, details, createdBy, likedBy) VALUES (?, ?, ?, ?, ?, ?)
     `;
-        await optramisDB.execute(insertQuery, [
+        await imisDB.execute(insertQuery, [
           commentId,
           projectId,
           item.taskId,
@@ -258,7 +258,7 @@ export async function initializeSocketServer(server) {
           "[]",
         ]);
 
-        const [commentResults] = await optramisDB.execute(
+        const [commentResults] = await imisDB.execute(
           "SELECT * FROM taskcomments WHERE commentId = ?",
           [commentId]
         );
@@ -275,7 +275,7 @@ export async function initializeSocketServer(server) {
           comment: commentData,
         });
 
-        const [taskResults] = await optramisDB.execute(
+        const [taskResults] = await imisDB.execute(
           "SELECT assignedTo, createdBy FROM tasks WHERE taskId = ?",
           [item.taskId]
         );
@@ -359,7 +359,7 @@ export async function initializeSocketServer(server) {
     socket.on("like-comment", async ({ comment, actor }) => {
       let connection;
       try {
-        connection = await optramisDB.getConnection();
+        connection = await imisDB.getConnection();
 
         await connection.beginTransaction();
 

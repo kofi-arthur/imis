@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import * as nodemailer from "nodemailer";
 import { v4 as uuidv4 } from "uuid";
 
-import { clearSessionCookie, optramisDB, userDB } from "../config.js";
+import { clearSessionCookie, imisDB, userDB } from "../config.js";
 import { systemID } from "../constants.js";
 import { getClientIP } from "../helpers/helper.general.js";
 import { getToken } from "../microsoftAuth.js";
@@ -65,7 +65,7 @@ export const syncToSystemDB = async (user) => {
     ON DUPLICATE KEY UPDATE displayName = VALUES(displayName), mail = VALUES(mail)
   `;
 
-  optramisDB.query(
+  imisDB.query(
     query,
     [user.id, user.displayName, user.mail, user.avatar ?? "default.jpg"],
     (err, info) => {
@@ -182,7 +182,7 @@ export async function logUserSessionActivity(
 }
 
 export async function handleUnauthorizedSessions(res, req) {
-  const sessionID = req.cookies.optramis_session_id;
+  const sessionID = req.cookies.imis_session_id;
 
   if (sessionID) {
     try {

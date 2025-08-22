@@ -1,5 +1,5 @@
 import { get } from "http";
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 import {
   getClientInfo,
@@ -38,7 +38,7 @@ export const fetchProjectAll = async (req, res) => {
   `;
 
   try {
-    const [results] = await optramisDB.query(query, [projectId]);
+    const [results] = await imisDB.query(query, [projectId]);
     if (results.length === 0)
       return res.json({ error: "Project not found or no tasks associated" });
 
@@ -86,7 +86,7 @@ export const fetchProjectAll = async (req, res) => {
 export const fetchProjectInfo = async (req, res) => {
   const { projectId } = req.params;
   try {
-    const [projectRows] = await optramisDB.query(
+    const [projectRows] = await imisDB.query(
       "SELECT * FROM projects WHERE projectId = ?",
       [projectId]
     );
@@ -162,7 +162,7 @@ export const fetchUserProjects = async (req, res) => {
   }
 
   try {
-    const [memberships] = await optramisDB.query(
+    const [memberships] = await imisDB.query(
       "SELECT projectId FROM projectmembers WHERE userId = ?",
       [user.id]
     );
@@ -172,7 +172,7 @@ export const fetchUserProjects = async (req, res) => {
     }
 
     const projectIds = memberships.map((row) => row.projectId);
-    const [rawProjects] = await optramisDB.query(
+    const [rawProjects] = await imisDB.query(
       "SELECT * FROM projects WHERE projectId IN (?)",
       [projectIds]
     );
@@ -252,7 +252,7 @@ export const addProject = async (req, res) => {
   const actor = req.user;
 
   try {
-    const [existing] = await optramisDB.query(
+    const [existing] = await imisDB.query(
       "SELECT * FROM projects WHERE workOrderNo = ? OR productionJobNo = ?",
       [project.workOrderNo, project.productionJobNo]
     );
@@ -263,7 +263,7 @@ export const addProject = async (req, res) => {
       });
     }
 
-    const [idCheck] = await optramisDB.query(
+    const [idCheck] = await imisDB.query(
       "SELECT projectId FROM projects WHERE projectId = ?",
       [project.projectId]
     );
@@ -275,7 +275,7 @@ export const addProject = async (req, res) => {
     project.createdBy = actor.id;
     project.projectOwner = project.projectOwner?.trim() || actor.id;
 
-    await optramisDB.query("INSERT INTO projects SET ?", [project]);
+    await imisDB.query("INSERT INTO projects SET ?", [project]);
 
     logSystem({
       type: "syslog",
@@ -297,7 +297,7 @@ export const updateProject = async (req, res) => {
   const actor = req.user;
 
   try {
-    await optramisDB.query("UPDATE projects SET ? WHERE projectId = ?", [
+    await imisDB.query("UPDATE projects SET ? WHERE projectId = ?", [
       project,
       project.projectId,
     ]);
@@ -335,8 +335,8 @@ export const deleteProject = async (req, res) => {
     const memberIds =
       projectMembers[projectId]?.map((m) => m.id) || [];
 
-      const io = await getSocketInstance();
-      const activeUsers = await getActiveUsers();
+    const io = await getSocketInstance();
+    const activeUsers = await getActiveUsers();
     for (const userId of memberIds) {
       const connection = activeUsers[userId];
       if (connection) {
@@ -345,7 +345,7 @@ export const deleteProject = async (req, res) => {
       }
     }
 
-    await optramisDB.query("DELETE FROM projects WHERE projectId = ?", [
+    await imisDB.query("DELETE FROM projects WHERE projectId = ?", [
       projectId,
     ]);
 
@@ -370,7 +370,7 @@ export const recoverProject = async (req, res) => {
   const project = getItemInfo(projectId, "projects");
 
   try {
-    await optramisDB.query("CALL recoverProject(?)", [projectId]);
+    await imisDB.query("CALL recoverProject(?)", [projectId]);
 
     logSystem({
       type: "syslog",

@@ -1,11 +1,11 @@
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 
 // Fetch all tags
 export const fetchTags = async (req, res) => {
   const query = `SELECT * FROM tags;`;
   try {
-    const [tags] = await optramisDB.query(query);
+    const [tags] = await imisDB.query(query);
     return res.status(200).json({ tags });
   } catch (err) {
     console.error("Error fetching tags:", err);
@@ -18,7 +18,7 @@ export const addTag = async (req, res) => {
   const tag = req.body;
   const query = `INSERT INTO tags SET ?;`;
   try {
-    const [result] = await optramisDB.query(query, [tag]);
+    const [result] = await imisDB.query(query, [tag]);
     return res
       .status(201)
       .json({ message: "Tag added successfully", tagId: result.insertId });
@@ -33,7 +33,7 @@ export const updateTag = async (req, res) => {
   const tag = req.body;
   const query = `UPDATE tags SET name = ?, color = ? WHERE id = ?;`;
   try {
-    const [result] = await optramisDB.query(query, [tag.name, tag.color, tag.id]);
+    const [result] = await imisDB.query(query, [tag.name, tag.color, tag.id]);
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: "Tag not found" });
     }
@@ -49,7 +49,7 @@ export const deleteTag = async (req, res) => {
   const { id } = req.params;
   const query = `DELETE FROM tags WHERE id = ?;`;
   try {
-    const [result] = await optramisDB.query(query, [id]);
+    const [result] = await imisDB.query(query, [id]);
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: "Tag not found" });
     }

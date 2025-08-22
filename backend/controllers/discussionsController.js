@@ -1,4 +1,4 @@
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 import { getUserInfo, getUsersInfoByIds } from "../utils/helpers.js";
 
@@ -32,7 +32,7 @@ export const fetchRecentMessages = async (req, res) => {
       LIMIT 5;
     `;
 
-    const [rows] = await optramisDB.query(query, [
+    const [rows] = await imisDB.query(query, [
       userId,
       projectId,
       userId,
@@ -78,7 +78,7 @@ export const fetchMessages = async (req, res) => {
   const query = "SELECT * FROM messages WHERE roomId = ?";
 
   try {
-    const [messages] = await optramisDB.query(query, [roomId]);
+    const [messages] = await imisDB.query(query, [roomId]);
     return res.json({ messages });
   } catch (err) {
     console.error("error executing query", err);
@@ -111,7 +111,7 @@ export const fetchPrivateChats = async (req, res) => {
   `;
 
   try {
-    const [chats] = await optramisDB.query(queryChats, [projectId, userId]);
+    const [chats] = await imisDB.query(queryChats, [projectId, userId]);
 
     // Gather all unique userIds across chats
     const allRecipientIds = new Set();
@@ -141,7 +141,7 @@ export const fetchPrivateChats = async (req, res) => {
 
     // Process chats
     const processChats = chats.map(async (chat) => {
-      const [messageResult] = await optramisDB.query(queryLastMessage, [
+      const [messageResult] = await imisDB.query(queryLastMessage, [
         chat.chatId,
       ]);
       const lastMessage = messageResult[0] || {};
@@ -165,7 +165,7 @@ export const fetchPrivateChats = async (req, res) => {
     // Include discussion chat
     const discussionChat = (async () => {
       try {
-        const [messageResult] = await optramisDB.query(queryLastMessage, [
+        const [messageResult] = await imisDB.query(queryLastMessage, [
           projectId,
         ]);
         const lastMessage = messageResult[0] || {};
@@ -177,11 +177,11 @@ export const fetchPrivateChats = async (req, res) => {
           chatId: projectId,
           sender: senderInfo
             ? {
-                id: senderInfo.id,
-                mail: senderInfo.mail,
-                displayName: senderInfo.displayName,
-                avatar: senderInfo.avatar,
-              }
+              id: senderInfo.id,
+              mail: senderInfo.mail,
+              displayName: senderInfo.displayName,
+              avatar: senderInfo.avatar,
+            }
             : null,
           message: lastMessage.message || null,
           timeSent: lastMessage.timeSent || null,
@@ -210,7 +210,7 @@ export const createChat = async (req, res) => {
   const query = `INSERT INTO chats SET ?`;
 
   try {
-    const [result] = await optramisDB.query(query, [chat]);
+    const [result] = await imisDB.query(query, [chat]);
     if (result.affectedRows === 0) {
       return res.json({ error: "Failed to create chat." });
     }
@@ -235,7 +235,7 @@ export const deleteChat = async (req, res) => {
   const query = `DELETE FROM chats WHERE id = ?`;
 
   try {
-    const [result] = await optramisDB.query(query, [chatId]);
+    const [result] = await imisDB.query(query, [chatId]);
     if (result.affectedRows === 0) {
       return res.json({ error: "Failed to delete chat." });
     }

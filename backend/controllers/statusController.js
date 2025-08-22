@@ -1,4 +1,4 @@
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 import { logSystem } from "../utils/helpers.js";
 
@@ -6,7 +6,7 @@ import { logSystem } from "../utils/helpers.js";
 export const fetchStatuses = async (req, res) => {
   const query = `SELECT * FROM statuses;`;
   try {
-    const [statuses] = await optramisDB.query(query);
+    const [statuses] = await imisDB.query(query);
     return res.json({ statuses });
   } catch (err) {
     console.error("Error fetching statuses:", err);
@@ -21,11 +21,11 @@ export const addStatus = async (req, res) => {
   const query = `INSERT INTO statuses SET ?`;
 
   try {
-    await optramisDB.query(query, [status]);
+    await imisDB.query(query, [status]);
 
     logSystem({
       details: `Added a status, ${status.statusName}`,
-     actor: actor.id,
+      actor: actor.id,
       version: "admin",
       type: "syslog",
     });
@@ -43,11 +43,11 @@ export const updateStatus = async (req, res) => {
   const query = `UPDATE statuses SET ? WHERE id = ?`;
 
   try {
-    await optramisDB.query(query, [status, status.id]);
+    await imisDB.query(query, [status, status.id]);
 
     logSystem({
       details: `edited a status, ${status.name}`,
-     actor: actor.id,
+      actor: actor.id,
       version: "admin",
       type: "syslog",
     });
@@ -65,11 +65,11 @@ export const deleteStatus = async (req, res) => {
   const query = `DELETE FROM statuses WHERE id = ?`;
 
   try {
-    await optramisDB.query(query, [status.id]);
+    await imisDB.query(query, [status.id]);
 
     logSystem({
       details: `deleted a status, ${status.name}`,
-     actor: actor.id,
+      actor: actor.id,
       version: "admin",
       type: "syslog",
     });

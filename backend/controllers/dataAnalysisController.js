@@ -1,4 +1,4 @@
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError, PROJECT_UPLOADS_DIR } from "../utils/constants.js";
 import { logSystem, logProjectActivity } from "../utils/helpers.js";
 import PDFDocument from "pdfkit";
@@ -15,7 +15,7 @@ export const exportPTPDF = async (req, res) => {
       FROM tasks
       WHERE projectId = ? AND parentId IS NULL;
     `;
-    const [tasks] = await optramisDB.query(tasksQuery, [projectId]);
+    const [tasks] = await imisDB.query(tasksQuery, [projectId]);
 
     if (tasks.length === 0) return res.json({ error: "No tasks found." });
 
@@ -24,7 +24,7 @@ export const exportPTPDF = async (req, res) => {
       FROM tasks
       WHERE projectId = ? AND parentId IS NOT NULL;
     `;
-    const [subtasks] = await optramisDB.query(subtasksQuery, [projectId]);
+    const [subtasks] = await imisDB.query(subtasksQuery, [projectId]);
 
     const taskMap = {};
     tasks.forEach((task) => (taskMap[task.taskId] = { ...task, subtasks: [] }));
@@ -128,7 +128,7 @@ export const exportPTPDF = async (req, res) => {
       projectId,
       details: `Exported project timeline to PDF.`,
       version: "client",
-     actor: actor.id,
+      actor: actor.id,
       type: "syslog",
     });
   } catch (err) {
@@ -151,7 +151,7 @@ export const exportPTEXCEL = async (req, res) => {
       FROM tasks
       WHERE projectId = ? AND parentId IS NULL;
     `;
-    const [tasks] = await optramisDB.query(tasksQuery, [projectId]);
+    const [tasks] = await imisDB.query(tasksQuery, [projectId]);
     if (tasks.length === 0) return res.json({ error: "No tasks found." });
 
     const subtasksQuery = `
@@ -159,7 +159,7 @@ export const exportPTEXCEL = async (req, res) => {
       FROM tasks
       WHERE projectId = ? AND parentId IS NOT NULL;
     `;
-    const [subtasks] = await optramisDB.query(subtasksQuery, [projectId]);
+    const [subtasks] = await imisDB.query(subtasksQuery, [projectId]);
 
     const taskMap = {};
     tasks.forEach((task) => (taskMap[task.taskId] = { ...task, subtasks: [] }));
@@ -266,7 +266,7 @@ export const exportPTEXCEL = async (req, res) => {
     logSystem({
       projectId,
       details: `Exported project timeline to Excel.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "syslog",
     });
@@ -291,7 +291,7 @@ export const fetchReportData = async (req, res) => {
   `;
 
   try {
-    const [results] = await optramisDB.query(query, [
+    const [results] = await imisDB.query(query, [
       projectId,
       projectId,
       projectId,

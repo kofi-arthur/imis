@@ -1,18 +1,18 @@
-import { optramisDB, transporter, userDB } from "./config.js";
+import { imisDB, transporter, userDB } from "./config.js";
 
 // Project Members
 export const getProjectMembers = async (projectRoom) => {
   const query = `SELECT userId FROM projectmembers WHERE projectId = ?`;
   try {
-    const [results] = await optramisDB.query(query, [projectRoom]);
+    const [results] = await imisDB.query(query, [projectRoom]);
     const userIds = results.map((row) => row.userId);
 
     if (userIds.length === 0) {
       return { [projectRoom]: [] };
     }
 
-    // Fetch basic user info from optramisDB
-    const [usersInfo] = await optramisDB.query(
+    // Fetch basic user info from imisDB
+    const [usersInfo] = await imisDB.query(
       `SELECT id, displayName, mail FROM users WHERE id IN (?)`,
       [userIds]
     );
@@ -52,8 +52,8 @@ export const getUserInfo = async (userId) => {
   if (!userId) return null;
 
   try {
-    // Step 1: Verify the user exists in optramisDB
-    const [[optramUser]] = await optramisDB.query(
+    // Step 1: Verify the user exists in imisDB
+    const [[optramUser]] = await imisDB.query(
       `SELECT id, mail, displayName FROM users WHERE id = ?`,
       [userId]
     );
@@ -83,8 +83,8 @@ export const getUsersInfoByIds = async (userIds = []) => {
   if (!Array.isArray(userIds) || userIds.length === 0) return [];
 
   try {
-    // Step 1: Fetch authorized users from optramisDB
-    const [optramUsers] = await optramisDB.query(
+    // Step 1: Fetch authorized users from imisDB
+    const [optramUsers] = await imisDB.query(
       `SELECT id, mail, displayName FROM users WHERE id IN (?)`,
       [userIds]
     );
@@ -142,7 +142,7 @@ export const getItemInfo = async (id, type) => {
 
   const query = `SELECT * FROM ${type} WHERE ${idName} = ? LIMIT 1`;
   try {
-    const [results] = await optramisDB.query(query, [id]);
+    const [results] = await imisDB.query(query, [id]);
     return results?.[0] || null;
   } catch (err) {
     console.error("Error fetching item info:", err);
@@ -163,10 +163,10 @@ export const checkMilestonesCompletion = async (milestoneId) => {
     WHERE id = ?
   `;
   try {
-    const [rows] = await optramisDB.query(statusQuery, [milestoneId]);
+    const [rows] = await imisDB.query(statusQuery, [milestoneId]);
     const { total, completed } = rows[0];
     const isCompleted = total > 0 && total === completed;
-    await optramisDB.query(updateQuery, [isCompleted, milestoneId]);
+    await imisDB.query(updateQuery, [isCompleted, milestoneId]);
   } catch (err) {
     console.error("Error updating completed milestones:", err);
   }
@@ -185,7 +185,7 @@ export const markAs = async (projectroom, type, status, item) => {
       : [status, item.id, projectroom];
 
   try {
-    const [info] = await optramisDB.query(query, params);
+    const [info] = await imisDB.query(query, params);
     return info.affectedRows > 0;
   } catch (err) {
     console.error("Error executing markAs query", err);
@@ -197,7 +197,7 @@ export const markAs = async (projectroom, type, status, item) => {
 export const changePriority = async (projectroom, priority, id) => {
   const query = `UPDATE tasks SET priority = ? WHERE projectId = ? AND id = ?`;
   try {
-    const [info] = await optramisDB.query(query, [priority, projectroom, id]);
+    const [info] = await imisDB.query(query, [priority, projectroom, id]);
     return info.affectedRows > 0;
   } catch (err) {
     console.error("Error executing changePriority query", err);
@@ -222,7 +222,7 @@ export async function emailNotif(mailOptions) {
 export const saveNotification = async (data) => {
   const query = `INSERT INTO notifications SET ?`;
   try {
-    await optramisDB.query(query, data);
+    await imisDB.query(query, data);
   } catch (err) {
     console.error("Error inserting notification:", err);
   }
@@ -344,7 +344,7 @@ export const saveDiscussionMessage = async (
 ) => {
   const query = `INSERT INTO messages (roomId, sender, message, timeSent) VALUES (?, ?, ?, ?)`;
   try {
-    await optramisDB.query(query, [roomId, sender, message, timeSent]);
+    await imisDB.query(query, [roomId, sender, message, timeSent]);
   } catch (err) {
     console.error("Error saving discussion message:", err);
   }
@@ -360,7 +360,7 @@ export const savePrivateMessage = async (
 ) => {
   const query = `INSERT INTO messages (roomId, sender, recipient, message, timeSent, isRead) VALUES (?, ?, ?, ?, ?, ?)`;
   try {
-    await optramisDB.query(query, [
+    await imisDB.query(query, [
       roomId,
       sender,
       recipient,
@@ -376,7 +376,7 @@ export const savePrivateMessage = async (
 export const readMessages = async (room, recipient) => {
   const query = `UPDATE messages SET isRead = 1 WHERE room = ? AND isRead = 0 AND JSON_CONTAINS(recipient, ?)`;
   try {
-    const [result] = await optramisDB.query(query, [room, recipient]);
+    const [result] = await imisDB.query(query, [room, recipient]);
     return result;
   } catch (err) {
     console.error("Error marking messages as read:", err);
@@ -444,7 +444,7 @@ export function groupProjectsByWorkOrder(results) {
 export const logSystem = async (activity) => {
   const query = `INSERT INTO logs SET ?`;
   try {
-    await optramisDB.query(query, activity);
+    await imisDB.query(query, activity);
   } catch (err) {
     console.error("Error executing query:", err);
   }
@@ -453,7 +453,7 @@ export const logSystem = async (activity) => {
 export const logProjectActivity = async (activity) => {
   const query = `INSERT INTO logs SET ?`;
   try {
-    await optramisDB.query(query, activity);
+    await imisDB.query(query, activity);
   } catch (err) {
     console.error("Error executing query:", err);
   }

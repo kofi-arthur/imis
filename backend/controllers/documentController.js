@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError, PROJECT_UPLOADS_DIR } from "../utils/constants.js";
 import { getItemInfo, getUserInfo, logSystem } from "../utils/helpers.js";
 
@@ -25,7 +25,7 @@ export const uploadDocument = async (req, res) => {
     ]);
 
     const sql = `INSERT INTO projectdocuments (projectId, name, type, parentId, size, path, createdBy) VALUES ?`;
-    await optramisDB.query(sql, [fileRecords]);
+    await imisDB.query(sql, [fileRecords]);
 
     files.forEach((file) => {
       logSystem({
@@ -64,7 +64,7 @@ export const downloadProjectFile = async (req, res) => {
     logSystem({
       projectId: req.params.projectId,
       details: `Downloaded a File - ${file.name}.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "syslog",
     });
@@ -110,7 +110,7 @@ export const getRecentFiles = async (req, res) => {
   const query = `SELECT * FROM projectdocuments WHERE projectId = ? AND type = 'file' ORDER BY dateCreated DESC LIMIT 10`;
 
   try {
-    const [result] = await optramisDB.query(query, [projectId]);
+    const [result] = await imisDB.query(query, [projectId]);
     await Promise.all(
       result.map(async (file) => {
         const creator = await getUserInfo(file.createdBy);
@@ -135,7 +135,7 @@ export const getRootDocuments = async (req, res) => {
   const query = `SELECT * FROM projectdocuments WHERE projectId = ? AND parentId IS NULL`;
 
   try {
-    const [result] = await optramisDB.query(query, [projectId]);
+    const [result] = await imisDB.query(query, [projectId]);
     await Promise.all(
       result.map(async (file) => {
         const creator = await getUserInfo(file.createdBy);
@@ -159,7 +159,7 @@ export const getNestedDocuments = async (req, res) => {
   const { projectId, folderId } = req.params;
   const query = `SELECT * FROM projectdocuments WHERE projectId = ? AND parentId = ?`;
   try {
-    const [result] = await optramisDB.query(query, [projectId, folderId]);
+    const [result] = await imisDB.query(query, [projectId, folderId]);
     await Promise.all(
       result.map(async (file) => {
         const creator = await getUserInfo(file.createdBy);
@@ -184,7 +184,7 @@ export const getTaskFiles = async (req, res) => {
   const query = `SELECT * FROM projectdocuments WHERE projectId = ? AND taskId = ? AND type = 'file'`;
 
   try {
-    const [result] = await optramisDB.query(query, [projectId, taskId]);
+    const [result] = await imisDB.query(query, [projectId, taskId]);
     await Promise.all(
       result.map(async (file) => {
         const creator = await getUserInfo(file.createdBy);
@@ -209,7 +209,7 @@ export const createProjectFolder = async (req, res) => {
   const actor = req.user;
 
   try {
-    const [exists] = await optramisDB.query(
+    const [exists] = await imisDB.query(
       `SELECT * FROM projectdocuments WHERE projectId = ? AND name = ? AND type = 'folder'`,
       [folder.projectId, folder.name, folder.id]
     );
@@ -218,7 +218,7 @@ export const createProjectFolder = async (req, res) => {
       return res.json({ error: "Folder with similar name already exists." });
     }
 
-    await optramisDB.query(
+    await imisDB.query(
       `INSERT INTO projectdocuments (projectId, name, type, parentId, createdBy) VALUES (?, ?, 'folder', ?, ?)`,
       [folder.projectId, folder.name, folder.id, actor.id]
     );
@@ -226,7 +226,7 @@ export const createProjectFolder = async (req, res) => {
     logSystem({
       projectId: folder.projectId,
       details: `Created a Folder - ${folder.name}`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "syslog",
     });
@@ -245,7 +245,7 @@ export const updateFolder = async (req, res) => {
 
   try {
     // Fetch the document to verify it exists
-    const [rows] = await optramisDB.query(
+    const [rows] = await imisDB.query(
       `SELECT * FROM projectdocuments WHERE id = ? AND type = 'folder'`,
       [id]
     );
@@ -257,7 +257,7 @@ export const updateFolder = async (req, res) => {
     const document = rows[0];
 
     // Optionally check: if a file with the new name already exists in the same folder
-    const [duplicate] = await optramisDB.query(
+    const [duplicate] = await imisDB.query(
       `SELECT * FROM projectdocuments WHERE name = ? AND parentId = ? AND projectId = ? AND id != ?`,
       [name, parentId ?? document.parentId, document.projectId, id]
     );
@@ -267,7 +267,7 @@ export const updateFolder = async (req, res) => {
     }
 
     // Update the document entry in the DB
-    await optramisDB.query(
+    await imisDB.query(
       `UPDATE projectdocuments SET name = ?, parentId = ? WHERE id = ?`,
       [name, parentId ?? document.parentId, id]
     );
@@ -275,7 +275,7 @@ export const updateFolder = async (req, res) => {
     logSystem({
       projectId: document.projectId,
       details: `Updated a Document - ${document.name}`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "syslog",
     })
@@ -297,7 +297,7 @@ const getAllDescendants = async (parentId) => {
       INNER JOIN descendants d ON pd.parentId = d.id
     ) SELECT * FROM descendants;
   `;
-  const [result] = await optramisDB.query(query, [parentId]);
+  const [result] = await imisDB.query(query, [parentId]);
   return result;
 };
 
@@ -321,14 +321,14 @@ export const deleteProjectFolder = async (req, res) => {
     }
 
     const ids = documents.map((doc) => doc.id);
-    await optramisDB.query(`DELETE FROM projectdocuments WHERE id IN (?)`, [
+    await imisDB.query(`DELETE FROM projectdocuments WHERE id IN (?)`, [
       ids,
     ]);
 
     logSystem({
       projectId: folder.projectId,
       details: `Deleted Folder '${folder.name}' and its contents.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "syslog",
     });
@@ -350,7 +350,7 @@ export const deleteProjectFile = async (req, res) => {
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
-    await optramisDB.query(
+    await imisDB.query(
       `DELETE FROM projectdocuments WHERE projectId = ? AND id = ? AND type = 'File'`,
       [file.projectId, file.id]
     );
@@ -358,7 +358,7 @@ export const deleteProjectFile = async (req, res) => {
     logSystem({
       projectId: file.projectId,
       details: `Deleted a File - ${file.name}.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "syslog",
     });

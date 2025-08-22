@@ -15,44 +15,44 @@ export const loginLimiter = rateLimit({
 
 // Middleware to protect routes
 export async function authenticateUser(req, res, next) {
-    const clientSession = req.cookies.optramis_session_id;
-    const sessionErrMsg = 'Session expired. Please login again';
+  const clientSession = req.cookies.imis_session_id;
+  const sessionErrMsg = 'Session expired. Please login again';
 
-    if (!clientSession) {
-        console.log('Session not found');
-        return res.status(204).end();
-    }
+  if (!clientSession) {
+    console.log('Session not found');
+    return res.status(204).end();
+  }
 
-    const fetchSessionQuery = "SELECT * FROM sessions WHERE id = ?";
+  const fetchSessionQuery = "SELECT * FROM sessions WHERE id = ?";
 
-    const [session] = await userDB.query(fetchSessionQuery, clientSession);
-    const DBSession = session[0];
+  const [session] = await userDB.query(fetchSessionQuery, clientSession);
+  const DBSession = session[0];
 
-    if (!DBSession) {
-        clearSessionCookie(res);
-        return res.json({ error: sessionErrMsg });
-    }
+  if (!DBSession) {
+    clearSessionCookie(res);
+    return res.json({ error: sessionErrMsg });
+  }
 
-    if (DBSession.expiresAt < Date.now()) {
-        return res.json({ error: sessionErrMsg });
-    }
+  if (DBSession.expiresAt < Date.now()) {
+    return res.json({ error: sessionErrMsg });
+  }
 
-    const fetchUserQuery = "SELECT * FROM users WHERE id = ?";
+  const fetchUserQuery = "SELECT * FROM users WHERE id = ?";
 
-    const [userInfo] = await userDB.query(fetchUserQuery, DBSession.userID);
-    const user = userInfo[0];
+  const [userInfo] = await userDB.query(fetchUserQuery, DBSession.userID);
+  const user = userInfo[0];
 
-    if (!user) {
-        return res.json({ error: sessionErrMsg });
-    }
+  if (!user) {
+    return res.json({ error: sessionErrMsg });
+  }
 
-    const fetchUserRoleQuery = "SELECT role FROM roles WHERE systemID = ? AND id = (SELECT roleID FROM userRoles WHERE userID = ? AND systemID = ?)";
+  const fetchUserRoleQuery = "SELECT role FROM roles WHERE systemID = ? AND id = (SELECT roleID FROM userRoles WHERE userID = ? AND systemID = ?)";
 
-    const [roleInfo] = await userDB.query(fetchUserRoleQuery, [SYSTEM_ID, user.id, SYSTEM_ID]);
-    user.role = roleInfo[0].role;
+  const [roleInfo] = await userDB.query(fetchUserRoleQuery, [SYSTEM_ID, user.id, SYSTEM_ID]);
+  user.role = roleInfo[0].role;
 
-    req.user = user;
-    next();
+  req.user = user;
+  next();
 }
 
 export const roleMiddleware = (req, res, next) => {

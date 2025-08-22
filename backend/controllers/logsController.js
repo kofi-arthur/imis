@@ -1,5 +1,5 @@
 
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 import { getUsersInfoByIds } from "../utils/helpers.js";
 
@@ -32,7 +32,7 @@ export const fetchLogsByType = async (req, res) => {
   `;
 
   try {
-    const [logs] = await optramisDB.query(query, [projectId, type]);
+    const [logs] = await imisDB.query(query, [projectId, type]);
     const enrichedLogs = await enrichLogsWithUserInfo(logs);
     return res.json({ recentActivities: enrichedLogs });
   } catch (err) {

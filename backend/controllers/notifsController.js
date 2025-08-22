@@ -1,5 +1,5 @@
 
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 
 // FETCH USER NOTIFICATIONS
@@ -23,7 +23,7 @@ export const getNotifications = async (req, res) => {
   `;
 
     try {
-      const [result] = await optramisDB.query(query, [userId]);
+      const [result] = await imisDB.query(query, [userId]);
       return res.json({ notifications: result });
     } catch (err) {
       console.error("Error executing query:", err);
@@ -61,8 +61,8 @@ export const getNotifications = async (req, res) => {
 //   `;
 
 //   try {
-//     await optramisDB.query(updateQuery, [mail, id, projectId]);
-//     await optramisDB.query(deleteQuery, [id]);
+//     await imisDB.query(updateQuery, [mail, id, projectId]);
+//     await imisDB.query(deleteQuery, [id]);
 //     return res.json({ message: "Success" });
 //   } catch (err) {
 //     console.error("Error removing notifications:", err);
@@ -120,8 +120,8 @@ export const removeNotifications = async (req, res) => {
   `;
 
     try {
-      await optramisDB.query(updateQuery, [userId, id, projectId]);
-      await optramisDB.query(deleteQuery, [id]);
+      await imisDB.query(updateQuery, [userId, id, projectId]);
+      await imisDB.query(deleteQuery, [id]);
       return res.json({ message: "Success" });
     } catch (err) {
       console.error("Error removing notifications:", err);
@@ -159,8 +159,8 @@ export const removeNotifications = async (req, res) => {
 //   `;
 
 //   try {
-//     await optramisDB.query(updateQuery, [mail]);
-//     await optramisDB.query(deleteQuery);
+//     await imisDB.query(updateQuery, [mail]);
+//     await imisDB.query(deleteQuery);
 //     return res.json({ message: "Success" });
 //   } catch (err) {
 //     console.error("Error removing all notifications:", err);
@@ -180,10 +180,10 @@ export const removeAllNotifications = async (req, res) => {
     return res.status(403).json({ error: "Forbidden" });
   } else {
     // Remove the userId from the recipients array
-  
-  const userId = actor.id;
 
-  const updateQuery = `
+    const userId = actor.id;
+
+    const updateQuery = `
     UPDATE notifications 
     SET recipients = (
       SELECT JSON_ARRAYAGG(userId)
@@ -198,23 +198,23 @@ export const removeAllNotifications = async (req, res) => {
     WHERE JSON_CONTAINS(recipients, JSON_QUOTE(?), '$');
   `;
 
-  const deleteQuery = `
+    const deleteQuery = `
     DELETE FROM notifications 
     WHERE recipients IS NULL OR JSON_LENGTH(recipients) = 0;
   `;
 
-  try {
-    const [updateResult] = await optramisDB.query(updateQuery, [userId, userId]);
-    const [deleteResult] = await optramisDB.query(deleteQuery);
+    try {
+      const [updateResult] = await imisDB.query(updateQuery, [userId, userId]);
+      const [deleteResult] = await imisDB.query(deleteQuery);
 
-    return res.json({
-      message: "Success",
-      removedFromNotifications: updateResult.affectedRows,
-      deletedNotifications: deleteResult.affectedRows,
-    });
-  } catch (err) {
-    console.error("Error removing all notifications:", err);
-    return res.status(500).send("Error updating/deleting notifications");
-  }
+      return res.json({
+        message: "Success",
+        removedFromNotifications: updateResult.affectedRows,
+        deletedNotifications: deleteResult.affectedRows,
+      });
+    } catch (err) {
+      console.error("Error removing all notifications:", err);
+      return res.status(500).send("Error updating/deleting notifications");
+    }
   }
 };

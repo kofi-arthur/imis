@@ -27,7 +27,7 @@ export const createTeamsMeeting = async ({
     subject: title,
     body: {
       contentType: "HTML",
-      content: `${description}` || "Meeting scheduled via Optramis.",
+      content: `${description}` || "Meeting scheduled via imis.",
     },
     start: {
       dateTime: startTime,
@@ -85,7 +85,7 @@ export const updateTeamsMeeting = async ({
     subject: title,
     body: {
       contentType: "HTML",
-      content: `${description}` || "Meeting scheduled via Optramis.",
+      content: `${description}` || "Meeting scheduled via imis.",
     },
     start: {
       dateTime: startTime,

@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { eventBus } from "../services/socketService.js";
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 import {
   getItemInfo,
@@ -15,7 +15,7 @@ export const fetchProjectTasks = async (req, res) => {
   const taskQuery = `SELECT * FROM tasks WHERE projectId = ? ORDER BY dateCreated ASC`;
 
   try {
-    const [tasks] = await optramisDB.query(taskQuery, [projectId]);
+    const [tasks] = await imisDB.query(taskQuery, [projectId]);
 
     if (tasks.length === 0) return res.json({ tasks: [] });
 
@@ -71,11 +71,11 @@ export const fetchTaskAll = async (req, res) => {
   const attachmentsQuery = `SELECT fileName, fileSize, createdBy, dateCreated FROM projectFiles WHERE taskId = ?`;
 
   try {
-    const [[task]] = await optramisDB.query(taskQuery, [taskId]);
+    const [[task]] = await imisDB.query(taskQuery, [taskId]);
     if (!task) return res.status(404).json({ error: "Task not found" });
 
-    const [comments] = await optramisDB.query(commentsQuery, [taskId]);
-    const [attachments] = await optramisDB.query(attachmentsQuery, [taskId]);
+    const [comments] = await imisDB.query(commentsQuery, [taskId]);
+    const [attachments] = await imisDB.query(attachmentsQuery, [taskId]);
 
     return res.json({ task: { ...task, comments, attachments } });
   } catch (err) {
@@ -93,7 +93,7 @@ export const addProjectTask = async (req, res) => {
   const insertQuery = `INSERT INTO tasks SET ?`;
 
   try {
-    const [exists] = await optramisDB.query(checkQuery, [
+    const [exists] = await imisDB.query(checkQuery, [
       task.taskId,
       task.projectId,
     ]);
@@ -106,9 +106,9 @@ export const addProjectTask = async (req, res) => {
     task.createdBy = task.createdBy.id;
     delete task.dateCreated;
     delete task.dateEdited;
-    await optramisDB.query(insertQuery, [task]);
+    await imisDB.query(insertQuery, [task]);
 
-    // const [[newTask]] = await optramisDB.query(
+    // const [[newTask]] = await imisDB.query(
     //   `SELECT * FROM tasks WHERE id = ?`,
     //   [task.taskId]
     // );
@@ -163,7 +163,7 @@ export const updateProjectTask = async (req, res) => {
       FROM tasks 
       WHERE taskId = ? AND projectId = ?
     `;
-    const [assignees] = await optramisDB.query(fetchAssigneesQuery, [
+    const [assignees] = await imisDB.query(fetchAssigneesQuery, [
       task.taskId,
       task.projectId,
     ]);
@@ -183,7 +183,7 @@ export const updateProjectTask = async (req, res) => {
       UPDATE tasks SET ? 
       WHERE taskId = ? AND projectId = ?
     `;
-    await optramisDB.query(query, [task, task.taskId, task.projectId]);
+    await imisDB.query(query, [task, task.taskId, task.projectId]);
 
     // Notify only the new assignees
     if (newlyAdded.length > 0) {
@@ -226,7 +226,7 @@ export const deleteProjectTask = async (req, res) => {
 
   try {
     const taskInfo = await getItemInfo(taskId, "tasks");
-    const [result] = await optramisDB.query(query, [taskId, taskId]);
+    const [result] = await imisDB.query(query, [taskId, taskId]);
 
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: "Task not found" });
@@ -262,7 +262,7 @@ export const recoverTask = async (req, res) => {
   const query = `CALL recoverTask(?)`;
 
   try {
-    await optramisDB.query(query, [taskId]);
+    await imisDB.query(query, [taskId]);
     await logSystem({
       projectId: task.projectId,
       details: `deleted Task - ${task.title}.`,
@@ -291,13 +291,13 @@ export const fetchTaskComments = async (req, res) => {
   const query = `SELECT * FROM taskcomments WHERE taskId = ? ORDER BY dateCreated`;
 
   try {
-    const [comments] = await optramisDB.query(query, [taskId]);
+    const [comments] = await imisDB.query(query, [taskId]);
 
     if (comments.length === 0) {
       return res.json({ comments: [] });
     }
 
-    // Fetch full user info (only for those present in optramisDB)
+    // Fetch full user info (only for those present in imisDB)
     const actorIds = comments.map((comment) => comment.createdBy);
     const actors = await getUsersInfoByIds(actorIds);
 
@@ -327,7 +327,7 @@ export const addTaskComment = async (req, res) => {
   const projectMembers = await getProjectMembers(comment.projectId);
 
   try {
-    await optramisDB.query(query, [comment]);
+    await imisDB.query(query, [comment]);
 
     eventBus.emit("notifyUsers", {
       action: "comment",
@@ -369,7 +369,7 @@ export const fetchTaskAttachments = async (req, res) => {
   `;
 
   try {
-    const [attachments] = await optramisDB.query(query, [taskId]);
+    const [attachments] = await imisDB.query(query, [taskId]);
     return res.json({ attachments });
   } catch (err) {
     console.error("Error fetching attachments:", err);
@@ -385,7 +385,7 @@ export const deleteTaskAttachment = async (req, res) => {
   const query = `DELETE FROM projectFiles WHERE fileId = ? AND taskId = ?`;
 
   try {
-    const [result] = await optramisDB.query(query, [fileId, taskId]);
+    const [result] = await imisDB.query(query, [fileId, taskId]);
 
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: "Attachment not found" });

@@ -1,5 +1,5 @@
 
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 import { getUserInfo, logSystem, notifyUsers } from "../utils/helpers.js";
 
@@ -7,7 +7,7 @@ import { getUserInfo, logSystem, notifyUsers } from "../utils/helpers.js";
 export const fetchProjects = async (req, res) => {
   const query = `SELECT * FROM projects ORDER BY dateCreated DESC;`;
   try {
-    const [projectResult] = await optramisDB.query(query);
+    const [projectResult] = await imisDB.query(query);
     return res.json({ projects: projectResult });
   } catch (err) {
     console.error("Error executing query:", err);
@@ -22,7 +22,7 @@ export const ModifyUserSystemRole = async (req, res) => {
   const actor = req.user;
   const query = `UPDATE users SET role = ? WHERE id = ?;`;
   try {
-    const [result] = await optramisDB.query(query, [role, id]);
+    const [result] = await imisDB.query(query, [role, id]);
 
     if (result.affectedRows === 0) {
       return res.json({ error: "No changes made." });
@@ -55,12 +55,12 @@ export const deleteUserMis = async (req, res) => {
   const actor = req.user;
   const query = "DELETE FROM users WHERE id = ?";
   try {
-    await optramisDB.query(query, [id]);
+    await imisDB.query(query, [id]);
 
     logSystem({
       type: "syslog",
       details: `deleted an Optramis user,${user.displayName}.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "admin",
     });
 

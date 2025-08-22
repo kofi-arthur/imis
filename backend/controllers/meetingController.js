@@ -2,7 +2,7 @@ import {
   getActiveUsers,
   getSocketInstance,
 } from "../services/socketService.js";
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 import {
   emailNotif,
@@ -35,7 +35,7 @@ export const fetchMeetings = async (req, res) => {
   `;
 
   try {
-    const [meetings] = await optramisDB.query(query, [actor.id, projectId]);
+    const [meetings] = await imisDB.query(query, [actor.id, projectId]);
 
     if (!meetings.length) return res.json({ meetings: [] });
 
@@ -129,7 +129,7 @@ export const addMeeting = async (req, res) => {
     meeting.attendants = JSON.stringify(meeting.attendants); // store array of IDs
 
     const query = `INSERT INTO projectmeetings SET ?`;
-    await optramisDB.query(query, [meeting]);
+    await imisDB.query(query, [meeting]);
 
     // 🔔 Notify users
     const attendantsInfo = await getUsersInfoByIds(attendantIds);
@@ -200,7 +200,7 @@ export const updateMeeting = async (req, res) => {
     } // store array of IDs
 
     const query = `UPDATE projectmeetings SET ? WHERE id = ? AND projectId = ?`;
-    await optramisDB.query(query, [meeting, meeting.id, meeting.projectId]);
+    await imisDB.query(query, [meeting, meeting.id, meeting.projectId]);
 
     // Log the update
     await logSystem({
@@ -241,7 +241,7 @@ export const deleteMeeting = async (req, res) => {
       await deleteTeamsMeeting(meeting.eventId, actor);
     }
 
-    await optramisDB.query(query, [meeting.id]);
+    await imisDB.query(query, [meeting.id]);
 
     logSystem({
       projectId: meeting.projectId,

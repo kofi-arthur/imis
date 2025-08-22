@@ -27,7 +27,7 @@ export const test = async (req, res) => {
 
 
 export const checkSession = async (req, res) => {
-  const clientSession = req.cookies.optramis_session_id;
+  const clientSession = req.cookies.imis_session_id;
 
   const sessionErrMsg = "Session expired. Please login again";
 
@@ -104,11 +104,11 @@ export const signup = async (req, res) => {
 
   if (!role[0]) {
     console.log("Role not found");
-    return 
+    return
   }
 
   userInfo.password = await hashPassword(password);
- 
+
   const roleInfo = {
     userID: userInfo.id,
     roleID: role[0].id,
@@ -323,7 +323,7 @@ export const resetPassword = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-  const sessionID = req.cookies.optramis_session_id;
+  const sessionID = req.cookies.imis_session_id;
 
   const sessionInfo = await fetchSession(sessionID);
 

@@ -1,4 +1,4 @@
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 import { logSystem } from "../utils/helpers.js";
 
@@ -6,7 +6,7 @@ export const fetchCategories = async (req, res) => {
   const query =
     "SELECT categoryName FROM projectcategories ORDER BY dateAdded DESC";
   try {
-    const [info] = await optramisDB.query(query);
+    const [info] = await imisDB.query(query);
     const categories = info;
     return res.json({ categories });
   } catch (err) {
@@ -20,11 +20,11 @@ export const addCategory = async (req, res) => {
   const actor = req.user;
   const query = "INSERT INTO projectcategories SET categoryName = ?";
   try {
-    await optramisDB.query(query, category);
+    await imisDB.query(query, category);
 
     logSystem({
       details: `Added a category, ${category}`,
-     actor: actor.id,
+      actor: actor.id,
       version: "admin",
       type: "syslog",
     });
@@ -41,11 +41,11 @@ export const updateCategory = async (req, res) => {
   const actor = req.user;
   const query = "UPDATE projectcategories SET categoryName = ? WHERE id = ?";
   try {
-    await optramisDB.query(query, [category.categoryName, category.id]);
+    await imisDB.query(query, [category.categoryName, category.id]);
 
     logSystem({
       details: `edited a category, ${category.categoryName}`,
-     actor: actor.id,
+      actor: actor.id,
       version: "admin",
       type: "syslog",
     });
@@ -62,11 +62,11 @@ export const deleteCategory = async (req, res) => {
   const actor = req.user;
   const query = "DELETE FROM projectcategories WHERE id = ?";
   try {
-    await optramisDB.query(query, category.id);
+    await imisDB.query(query, category.id);
 
     logSystem({
       details: `deleted a category, ${category.categoryName}`,
-     actor: actor.id,
+      actor: actor.id,
       version: "admin",
       type: "syslog",
     });

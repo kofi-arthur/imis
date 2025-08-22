@@ -1,4 +1,4 @@
-import { optramisDB } from "../utils/config.js";
+import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
 import { getItemInfo, getUserInfo, getUsersInfoByIds, logProjectActivity, logSystem } from "../utils/helpers.js";
 
@@ -8,7 +8,7 @@ export const fetchMilestones = async (req, res) => {
   const query = `SELECT * FROM milestones WHERE projectId = ?`;
 
   try {
-    const [results] = await optramisDB.query(query, [projectId]);
+    const [results] = await imisDB.query(query, [projectId]);
 
     if (!results.length) {
       return res.json({ milestones: [] });
@@ -52,13 +52,13 @@ export const addMilestone = async (req, res) => {
   const query = `INSERT INTO milestones SET ?`;
 
   try {
-    await optramisDB.query(query, [milestone]);
+    await imisDB.query(query, [milestone]);
     const project = await getItemInfo(milestone.projectId, "projects");
 
     logSystem({
       projectId: milestone.projectId,
       details: `created a milestone - ${milestone.title}.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "syslog",
     });
@@ -66,7 +66,7 @@ export const addMilestone = async (req, res) => {
     logProjectActivity({
       projectId: milestone.projectId,
       details: `created a new milestone - ${milestone.title} in Project ${project.title}.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "activity",
     });
@@ -80,13 +80,13 @@ export const addMilestone = async (req, res) => {
 
 // UPDATE MILESTONE
 export const updateMilestone = async (req, res) => {
-  const  milestone  = req.body;
+  const milestone = req.body;
   const actor = req.user;
 
   const query = `UPDATE milestones SET ? WHERE id = ? AND projectId = ?`;
 
   try {
-    await optramisDB.query(query, [
+    await imisDB.query(query, [
       milestone,
       milestone.id,
       milestone.projectId,
@@ -95,7 +95,7 @@ export const updateMilestone = async (req, res) => {
     logSystem({
       projectId: milestone.projectId,
       details: `modified a milestone - ${milestone.title}.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "syslog",
     });
@@ -103,7 +103,7 @@ export const updateMilestone = async (req, res) => {
     logProjectActivity({
       projectId: milestone.projectId,
       details: `modified a milestone - ${milestone.title}.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "activity",
     });
@@ -122,12 +122,12 @@ export const deleteMilestone = async (req, res) => {
   const query = `DELETE FROM milestones WHERE projectId = ? AND id = ?`;
 
   try {
-    await optramisDB.query(query, [milestone.projectId, milestone.id]);
+    await imisDB.query(query, [milestone.projectId, milestone.id]);
 
     logSystem({
       projectId: milestone.projectId,
       details: `deleted a milestone - ${milestone.title}.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "syslog",
     });
@@ -135,7 +135,7 @@ export const deleteMilestone = async (req, res) => {
     logProjectActivity({
       projectId: milestone.projectId,
       details: `deleted a milestone - ${milestone.title}.`,
-     actor: actor.id,
+      actor: actor.id,
       version: "client",
       type: "activity",
     });

@@ -1,7 +1,7 @@
 import {
   eventBus
 } from "../services/socketService.js";
-import { optramisDB, userDB } from "../utils/config.js";
+import { imisDB, userDB } from "../utils/config.js";
 import { defError, systemID } from "../utils/constants.js";
 import {
   getItemInfo,
@@ -53,7 +53,7 @@ export const fetchSystemUsers = async (req, res) => {
 
   try {
     // Get users from both databases
-    const [optramisUsers] = await optramisDB.query(optramQuery);
+    const [optramisUsers] = await imisDB.query(optramQuery);
     const [userDbUsers] = await userDB.query(userDbQuery);
 
     if (optramisUsers.length === 0) {
@@ -96,7 +96,7 @@ export const fetchProjectMembership = async (req, res) => {
     FROM projectmembers
     WHERE projectId = ? AND userId = ?`;
   try {
-    const [result] = await optramisDB.query(query, [projectId, actor.id]);
+    const [result] = await imisDB.query(query, [projectId, actor.id]);
     return res.json({ membership: result[0] });
   } catch (err) {
     console.error("Error fetching membership:", err);
@@ -120,7 +120,7 @@ export const fetchProjectMembers = async (req, res) => {
   const userProjectRole = `SELECT name ,description FROM projectroles WHERE id = (SELECT roleId FROM projectmembers WHERE userId = ? AND projectId = ?)`;
 
   try {
-    const [projectMembers] = await optramisDB.query(memberQuery, [projectId]);
+    const [projectMembers] = await imisDB.query(memberQuery, [projectId]);
 
     if (projectMembers.length === 0) {
       return res.json({ members: [] });
@@ -139,11 +139,11 @@ export const fetchProjectMembers = async (req, res) => {
           user.id,
           systemID,
         ]);
-        const [projectRole] = await optramisDB.query(userProjectRole, [
+        const [projectRole] = await imisDB.query(userProjectRole, [
           user.id,
           projectId,
         ]);
-        const [userPerm] = await optramisDB.query(userPermission, [
+        const [userPerm] = await imisDB.query(userPermission, [
           user.id,
           projectId,
         ]);
@@ -188,7 +188,7 @@ export const addUserToProject = async (req, res) => {
   try {
     for (const user of users) {
       const query = `INSERT INTO projectmembers SET projectId = ?, userId = ?`;
-      await optramisDB.query(query, [projectId, user.id]);
+      await imisDB.query(query, [projectId, user.id]);
 
       await logSystem({
         projectId,
@@ -222,11 +222,11 @@ export const addUserToProject = async (req, res) => {
           user.id,
           systemID,
         ]);
-        const [projectRole] = await optramisDB.query(userProjectRole, [
+        const [projectRole] = await imisDB.query(userProjectRole, [
           user.id,
           projectId,
         ]);
-        const [userPerm] = await optramisDB.query(userPermission, [
+        const [userPerm] = await imisDB.query(userPermission, [
           user.id,
           projectId,
         ]);
@@ -238,7 +238,7 @@ export const addUserToProject = async (req, res) => {
       })
     );
 
-   eventBus.emit("notifyUsers", {
+    eventBus.emit("notifyUsers", {
       action: "grant",
       recipients: users,
       item: projectInfo,
@@ -273,7 +273,7 @@ export const deleteUserFromProject = async (req, res) => {
     const usersInfo = await getUsersInfoByIds(userIds);
 
     for (const user of usersInfo) {
-      const [existing] = await optramisDB.query(
+      const [existing] = await imisDB.query(
         `SELECT 1 FROM projectmembers WHERE projectId = ? AND userId = ? LIMIT 1`,
         [projectId, user.id]
       );
@@ -282,7 +282,7 @@ export const deleteUserFromProject = async (req, res) => {
         continue;
       }
 
-      await optramisDB.query(
+      await imisDB.query(
         `DELETE FROM projectmembers WHERE projectId = ? AND userId = ?`,
         [projectId, user.id]
       );
@@ -345,7 +345,7 @@ export const uploadProfile = async (req, res) => {
 export const changeProjectOwner = async (req, res) => {
   const { projectId, oldOwnerId, newOwnerId } = req.body;
   const actor = req.user;
-  if(actor.id !== oldOwnerId ) {
+  if (actor.id !== oldOwnerId) {
     return res.json({ error: "Unauthorized action." });
   }
   const projectInfo = await getItemInfo(projectId, "projects");
@@ -358,7 +358,7 @@ export const changeProjectOwner = async (req, res) => {
       return res.status(404).json({ error: "New owner not authorized." });
     }
 
-    const [info] = await optramisDB.query(
+    const [info] = await imisDB.query(
       `UPDATE projects SET projectOwner = ? WHERE projectId = ?`,
       [newOwnerId, projectId]
     );
@@ -376,9 +376,8 @@ export const changeProjectOwner = async (req, res) => {
 
     logSystem({
       projectId,
-      details: `changed project owner from ${
-        oldOwner?.displayName || "unknown"
-      } to ${newOwner.displayName}`,
+      details: `changed project owner from ${oldOwner?.displayName || "unknown"
+        } to ${newOwner.displayName}`,
       actor: actor.id,
       version: "client",
       type: "syslog",
@@ -392,7 +391,7 @@ export const changeProjectOwner = async (req, res) => {
       type: "activity",
     });
 
-    return res.json({ message: "Project ownership changed successfully", newOwner: newOwner});
+    return res.json({ message: "Project ownership changed successfully", newOwner: newOwner });
   } catch (err) {
     console.error("Error changing project owner:", err);
     return res.status(500).json({ error: defError });
@@ -408,17 +407,17 @@ export const changeUserAccess = async (req, res) => {
   const projectInfo = await getItemInfo(projectId, "projects");
 
   try {
-    const [existingMember] = await optramisDB.query(
+    const [existingMember] = await imisDB.query(
       `SELECT * FROM projectmembers WHERE userId = ? AND projectId = ?`,
       [userId, projectId]
     );
     if (existingMember.length > 0) {
-      await optramisDB.query(
+      await imisDB.query(
         `UPDATE projectmembers SET roleId = ?, permissionId = ? WHERE userId = ? AND projectId = ?;`,
         [roleId, permId, userId, projectId]
       );
     } else {
-      await optramisDB.query(
+      await imisDB.query(
         `INSERT INTO projectmembers (userId, roleId, projectId ,permissionId) VALUES (?, ?, ?,?)`,
         [userId, roleId, projectId, permId]
       );

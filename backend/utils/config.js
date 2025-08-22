@@ -19,7 +19,7 @@ export const userDB = mysql.createPool({
   queueLimit: 0,
 });
 
-export const optramisDB = mysql.createPool({
+export const imisDB = mysql.createPool({
   host: process.env.MYSQL_SYSTEM_HOST,
   port: process.env.MYSQL_PORT,
   user: process.env.MYSQL_SYSTEM_USER,
@@ -34,20 +34,20 @@ export const optramisDB = mysql.createPool({
 
 // Cookie Generation
 export function setSessionCookie(res, sessionID) {
-    res.cookie('optramis_session_id', sessionID, {
-        httpOnly: true,
-        sameSite: "strict",
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 8 * 60 * 60 * 1000, // 8 hours
-    })
+  res.cookie('imis_session_id', sessionID, {
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 8 * 60 * 60 * 1000, // 8 hours
+  })
 }
 
 export function clearSessionCookie(res) {
-    res.clearCookie('optramis_session_id', {
-        httpOnly: true,
-        sameSite: "strict",
-        secure: process.env.NODE_ENV === 'production',
-    })
+  res.clearCookie('imis_session_id', {
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === 'production',
+  })
 }
 
 // Nodemailer Transporter---------------------------------------------------------------
@@ -61,10 +61,7 @@ export const transporter = nodemailer.createTransport({
 
 export const corsConfig = {
   origin: [
-    `http://localhost:5174`,
-    `http://localhost:5174`,
-    frontendUrl,
-    `http://192.168.203.54:5173`,
+    frontendUrl
   ],
   credentials: true,
 };
