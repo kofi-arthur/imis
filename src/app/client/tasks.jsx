@@ -855,7 +855,7 @@ const NewTask = ({
   }
 
   function handleSubmit() {
-    const oldCreatedBy = selectedTask.createdBy;
+    const oldCreatedBy = selectedTask?.createdBy;
 
     const payload = {
       ...selectedTask,
