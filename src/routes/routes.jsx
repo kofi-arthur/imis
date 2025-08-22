@@ -27,10 +27,10 @@ import ProjectTasks from "../app/client/tasks";
 // project settings
 import General from "../app/client/projectSettings/general";
 import TeamMembers from "../app/client/projectSettings/members";
-import ProjectRoles from "../app/client/projectSettings/roles.jsx";
-import ProtectedRoute from "./protectedRoute.jsx";
 import ActivityLogs from "../app/client/projectSettings/activityLogs.jsx";
 import Backup from "../app/client/projectSettings/backup.jsx";
+
+import ProtectedRoute from "./protectedRoute.jsx";
 
 export default function AppRoutes() {
   return (
@@ -64,7 +64,6 @@ export default function AppRoutes() {
           <Route path="project-settings" element={<ProjectSettings />}>
             <Route index element={<General />} />
             <Route path="project-members" element={<TeamMembers />} />
-            <Route path="project-roles" element={<ProjectRoles />} />
             <Route path="activity-logs" element={<ActivityLogs />} />
             <Route path="backup" element={<Backup />} />
           </Route>

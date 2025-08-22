@@ -24,9 +24,6 @@ export default function ProjectSettings() {
             name: 'Project Members',
             link: 'project-members'
         }, {
-            name: 'Project Roles',
-            link: 'project-roles'
-        }, {
             name: 'Activity Logs',
             link: 'activity-logs'
         }, {

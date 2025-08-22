@@ -45,7 +45,7 @@
 }
 
 .field {
-  width: 500px;
+  width: 700px;
   display: flex;
   flex-direction: column;
   margin-bottom: 0.7rem;
@@ -74,7 +74,7 @@
 }
 
 .dangerField {
-  width: 500px;
+  width: 700px;
   border: 1px solid crimson;
   padding: 1rem;
   border-radius: 0.45rem;
@@ -84,7 +84,7 @@
   p {
     font-size: 0.9rem;
     color: var(--color-light);
-    margin-bottom: 0.5rem;
+    margin-block: 1rem;
   }
 
   button {
@@ -147,7 +147,7 @@ hr {
   place-content: center;
 
   .trasferProject {
-    width: 500px;
+    width: 700px;
     background: var(--tile-bg);
     border-radius: 0.9rem;
     padding: 1rem;
