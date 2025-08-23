@@ -42,17 +42,16 @@ export default function AvatarStack({ users = [], maxVisible = 4 }) {
 }
 
 export function Avatar({ user, type, width, height }) {
-    const initial = user.displayName?.charAt(0).toUpperCase()
-    const bgColor = getRandomColor(user.displayName);
+    const initial = user?.displayName?.charAt(0).toUpperCase()
+    const bgColor = getRandomColor(user?.displayName);
 
     return (
         <div className={styles.avatarContainer} style={{ width, height }}>
             {
                 user?.avatar ?
                     <img className={styles.avatar} src={type === 'client' ?
-                        `../../backend/clients/${user?.id}/avatar/${user?.avatar}` :
-                        // `../../backend/users/${user?.id}/avatar/${user?.avatar}`
-                        user?.avatar
+                        `https://srv432552.hstgr.cloud/images/clients/${user.id}/avatar/${user.avatar}` :
+                        `https://srv432552.hstgr.cloud/images/users/${user.id}/avatar/${user.avatar}`
                     }
                         alt={`${user.displayName}'s profile picture`}
                         title={user.displayName}
@@ -60,7 +59,7 @@ export function Avatar({ user, type, width, height }) {
                     /> :
                     <div
                         className={styles.nameAvatar}
-                        title={user.displayName}
+                        title={user?.displayName}
                         style={{ backgroundColor: bgColor, width, height }}
                     >
                         <p>{initial}</p>
