@@ -77,77 +77,15 @@ export async function initializeSocketServer(server) {
 
     socket.on("changeStatus", async ({ projectroom, item, type, status }) => {
       try {
-        const projectInfo = await getItemInfo(projectroom, "projects");
         const projectMembers = await getProjectMembers(projectroom);
 
-        const projectRoomMembers = projectMembers[projectroom] || [];
-
-        const recipients = projectRoomMembers.map((memberObj) => ({
-          id: memberObj.id,
-          mail: memberObj.mail,
-          displayName: memberObj.displayName,
-        }));
-
-        const projectMemberIds = recipients
-          .filter((r) => r.id !== connectionUser.id)
-          .map((r) => r.id);
-
-        projectMemberIds.forEach((id) => {
-          const recipientConnection = activeUsers[id];
-          if (
-            recipientConnection &&
-            recipientConnection.socketId !== socket.id
-          ) {
-            socket.to(recipientConnection.socketId).emit("newTaskNotif", {
-              title: `Task Status Change in project ${projectInfo.projectName}`,
-              projectroom,
-              message: `The status of ${item.title} has been changed to ${status}.`,
-            });
-          }
-        });
-
-        notifyUsers("statusChange", item, projectMemberIds, {
-          type,
-          status,
-          actor: connectionUser,
-        });
-
-        const inactiveRecipients = recipients
-          .filter((user) => !activeUsers[user.id])
-          .map((user) => ({
-            mail: user.mail,
-            displayName: user.displayName,
-          }));
-
         if (type === "projects") {
-          if (inactiveRecipients.length > 0) {
-            const recipientEmails = inactiveRecipients.map(
-              (recipient) => recipient.mail
-            );
-            const message = `<div style="text-align: left;">
-  <p>Hello,<br/>
-      This email was sent to inform you of the information below.
-  </p>
-  <h4>
-      Project - ${item.projectName} with Work Order No <span style="font-weight: bold;">${item.workOrderNo}</span> has been marked as
-      <span style="font-weight: bold;">${status}</span>.
-  </h4>
-  <p style="font-size: 15px;">
-      Please do not respond to this email.
-  </p>
-  <span style="font-size: 15px; opacity: .8;">
-      IMIS.wecltd
-  </span>&copy;
-  </div>`;
-            const mailoptions = {
-              from: process.env.devEmail,
-              to: recipientEmails,
-              subject: `Project Status Change`,
-              html: message,
-            };
-            emailNotif(mailoptions);
-          }
-
+          eventBus.emit("notifyUsers", {
+            action: "statusChange",
+            recipients: projectMembers[projectroom],
+            item: item,
+            extra: { type: "project", status, actor: connectionUser },
+          });
           logProjectActivity({
             projectId: projectroom,
             details: `marked Project - ${item.title} as ${status}`,
@@ -164,33 +102,12 @@ export async function initializeSocketServer(server) {
             type: "syslog",
           });
         } else {
-          if (inactiveRecipients.length > 0) {
-            const recipientEmails = inactiveRecipients.map(
-              (recipient) => recipient.mail
-            );
-            const message = `<div style="text-align: left;">
-            <p>Hello,<br/>
-                This email was sent to inform you of the information below.
-            </p>
-            <h4>
-                Task - ${item.title} for Project - <span style="font-weight: bold;">${projectInfo.projectName}</span> has been marked as
-                <span style="font-weight: bold;">${status}</span>.
-            </h4>
-            <p style="font-size: 15px;">
-                Please do not respond to this email.
-            </p>
-            <span style="font-size: 15px; opacity: .8;">
-                IMIS.wecltd
-            </span>&copy;
-            </div>`;
-            const mailoptions = {
-              from: process.env.devEmail,
-              to: recipientEmails,
-              subject: `Task Status Change`,
-              html: message,
-            };
-            emailNotif(mailoptions);
-          }
+          eventBus.emit("notifyUsers", {
+            action: "statusChange",
+            recipients: projectMembers[projectroom],
+            item: item,
+            extra: { type: "task", status, actor: connectionUser },
+          });
           logProjectActivity({
             projectId: projectroom,
             details: `marked Task - ${item.title} as ${status}`,
@@ -217,7 +134,7 @@ export async function initializeSocketServer(server) {
         const projectMembers = await getProjectMembers(projectroom);
         eventBus.emit("notifyUsers", {
           action: "priorityChange",
-          recipients: projectMembers,
+          recipients: projectMembers[projectroom],
           item: item,
           extra: { type: "task", priority, actor: connectionUser },
         });
