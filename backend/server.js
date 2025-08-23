@@ -1,6 +1,8 @@
 import express from "express";
 import multer from "multer";
-import * as http from "http";
+// import * as http from "http";
+import fs from 'fs'
+import * as https from 'https'
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import adminRoutes from "./routes/adminRoutes.js";
@@ -20,7 +22,16 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors(corsConfig));
 
-const server = http.createServer(app);
+
+// const server = http.createServer(app);
+
+// HTTPS SERVER
+const serverOptions = {
+    key: fs.readFileSync(process.env.LETSENCRYPT_KEY),
+    cert: fs.readFileSync(process.env.LETSENCRYPT_CERT)
+}
+
+const server = https.createServer(serverOptions, app)
 
 await initializeSocketServer(server);
 
