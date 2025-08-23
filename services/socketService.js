@@ -530,7 +530,7 @@ export async function initializeSocketServer(server) {
                       body: details,
                     });
                     return emailNotif({
-                      from: `noreply@wayoeltd.com`,
+                      from: `itdevelopers@wayoeltd.com`,
                       to: user.mail,
                       subject: `[Imis] ${title}`,
                       html: emailHtml,
