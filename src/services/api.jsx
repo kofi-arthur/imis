@@ -2,7 +2,7 @@ import Axios from "axios";
 import { errorToast, successToast } from "../components/toast.jsx";
 
 // export const api = "http://localhost:3300";
-export const api = "https://imis.wecltd.io:3021";
+export const api = "https://wecltd.io:3021";
 // export const api = "http://192.168.203.54:3300";
 
 export const axios = Axios.create({
