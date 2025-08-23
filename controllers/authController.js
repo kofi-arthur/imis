@@ -250,7 +250,7 @@ export const forgotPassword = async (req, res) => {
       return res.json({ error: "No user found with that email." });
     }
 
-    const token = crypto.randomUUID();
+    const token = uuidv4();
     const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour expiry
 
     const insertTokenQuery = `INSERT INTO passwordResetTokens (userID, token, expiresAt, used)

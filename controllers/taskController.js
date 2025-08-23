@@ -1,4 +1,3 @@
-import crypto from "crypto";
 import { eventBus } from "../services/socketService.js";
 import { imisDB } from "../utils/config.js";
 import { defError } from "../utils/constants.js";
@@ -97,7 +96,7 @@ export const addProjectTask = async (req, res) => {
       task.taskId,
       task.projectId,
     ]);
-    if (exists.length > 0) task.taskId = crypto.randomUUID();
+    if (exists.length > 0) task.taskId = uuidv4();
 
     const assignees = task.assignedTo || [];
     const assignedIds = (task.assignedTo || []).map((user) => user.id);

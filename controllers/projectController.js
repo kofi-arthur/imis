@@ -10,7 +10,7 @@ import {
   logProjectActivity,
   logSystem,
 } from "../utils/helpers.js";
-import crypto from "crypto";
+import { v4 as uuidv4 } from "uuid";
 import { getActiveUsers, getSocketInstance } from "../services/socketService.js";
 
 // Fetch project with tasks (with nested subtasks)
@@ -269,7 +269,7 @@ export const addProject = async (req, res) => {
     );
 
     if (idCheck.length > 0) {
-      project.projectId = crypto.randomUUID();
+      project.projectId = uuidv4();
     }
 
     project.createdBy = actor.id;

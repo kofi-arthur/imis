@@ -244,7 +244,7 @@ export async function initializeSocketServer(server) {
     });
 
     socket.on("add-comment", async ({ projectId, item, comment }) => {
-      const commentId = crypto.randomUUID();
+      const commentId = uuidv4();
 
       try {
         const insertQuery = `INSERT INTO taskcomments (commentId, projectId, taskId, details, createdBy, likedBy) VALUES (?, ?, ?, ?, ?, ?)
