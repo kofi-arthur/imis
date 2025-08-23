@@ -18,6 +18,7 @@ import {
   syncToSystemDB,
   verifyUserOnMicrosoft
 } from "../utils/helpers/helpers.auth.js";
+import { v4 as uuidv4 } from "uuid";
 
 dotenv.config();
 

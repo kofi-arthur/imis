@@ -21,6 +21,8 @@ let usersInRooms = {};
 let activeUsers = {};
 let io;
 
+import { v4 as uuidv4 } from "uuid";
+
 export const eventBus = new EventEmitter();
 
 export async function initializeSocketServer(server) {
@@ -34,7 +36,7 @@ export async function initializeSocketServer(server) {
       socket.disconnect();
       return;
     }
-    let connectionUser
+    let connectionUser;
 
     if (userId !== null && userId !== undefined) {
       const userInfo = await getUserInfo(userId);

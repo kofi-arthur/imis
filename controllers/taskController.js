@@ -9,6 +9,8 @@ import {
   logSystem,
 } from "../utils/helpers.js";
 
+import { v4 as uuidv4 } from "uuid";
+
 export const fetchProjectTasks = async (req, res) => {
   const projectId = req.params.projectId;
   const taskQuery = `SELECT * FROM tasks WHERE projectId = ? ORDER BY dateCreated ASC`;
