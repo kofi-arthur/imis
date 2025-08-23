@@ -212,7 +212,7 @@ export const changePriority = async (projectroom, priority, id) => {
 export async function emailNotif(mailOptions) {
   try {
     await transporter.sendMail(mailOptions);
-    console.log("Notification sent to email");
+    // console.log("Notification sent to email");
   } catch (err) {
     console.error("Error sending mail:", err);
   }
