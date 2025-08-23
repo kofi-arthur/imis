@@ -26,7 +26,7 @@ const ProjectRow = ({ isSelected, project, onSelect, viewProject }) => {
     <div className={styles.projectRow}>
       <button
         className={styles.selectBtn}
-        onClick={() => onSelect(project.projectId)}
+        onClick={() => onSelect(project?.projectId)}
       >
         <i
           className={isSelected ? "fas fa-square-check" : "fal fa-square"}
@@ -38,24 +38,24 @@ const ProjectRow = ({ isSelected, project, onSelect, viewProject }) => {
         className={styles.projectName}
         onClick={() => viewProject(project)}
       >
-        {project.projectName}
+        {project?.projectName}
       </div>
 
       <div className={styles.client}>
-        <Avatar type={'client'} user={project.client} />
+        <Avatar type={'client'} user={project?.client} />
         <div className={styles.clientInfo}>
-          <h4>{project.client.displayName}</h4>
-          {project.client.website ?
-            <a target="_blank" href={project.client.website}>{project.client.website}</a> :
-            <a href={`mailto:${project.client.primaryContactMail}`}>
-              {project.client.primaryContactMail}
+          <h4>{project?.client?.displayName}</h4>
+          {project?.client?.website ?
+            <a target="_blank" href={project?.client?.website}>{project?.client?.website}</a> :
+            <a href={`mailto:${project?.client?.primaryContactMail}`}>
+              {project?.client?.primaryContactMail}
             </a>
           }
         </div>
       </div>
 
       <div className={styles.members}>
-        {project?.members && <AvatarStack users={project.members} maxVisible={7} />}
+        {project?.members && <AvatarStack users={project?.members} maxVisible={7} />}
       </div>
 
       <div className={styles.projectStatus}>
@@ -64,7 +64,7 @@ const ProjectRow = ({ isSelected, project, onSelect, viewProject }) => {
 
       <div className={styles.dueDate}>
         <i className="fal fa-calendar"></i>
-        <p>{formatDate(project.dueDate)}</p>
+        <p>{formatDate(project?.dueDate)}</p>
       </div>
     </div>
   );
@@ -75,27 +75,27 @@ const ProjectGrid = ({ isSelected, project, onSelect, viewProject }) => {
     <div className={`${styles.projectGrid} ${isSelected && styles.active}`}>
       <div className={styles.title}>
         <div className={styles.selectTitle}>
-          <button onClick={() => onSelect(project.projectId)}>
+          <button onClick={() => onSelect(project?.projectId)}>
             <i
               style={{ color: isSelected ? "var(--primary)" : "var(--color)" }}
               className={isSelected ? "fas fa-square-check" : "fal fa-square"}></i>
           </button>
-          <h3 onClick={() => viewProject(project)}>{project.projectName}</h3>
+          <h3 onClick={() => viewProject(project)}>{project?.projectName}</h3>
         </div>
-        <Avatar type={"client"} user={project.client} />
+        <Avatar type={"client"} user={project?.client} />
       </div>
 
-      {project.projectDescription ? <p className={styles.description}>
-        {project.projectDescription}
+      {project?.projectDescription ? <p className={styles.description}>
+        {project?.projectDescription}
       </p> : <p className={styles.emptyDescription}>No description</p>}
 
       <div className={styles.client}>
         <div className={styles.clientInfo}>
-          <h4>{project.client.displayName}</h4>
-          {project.client.website ?
-            <a target="_blank" href={project.client.website}>{project.client.website}</a> :
-            <a href={`mailto:${project.client.primaryContactMail}`}>
-              {project.client.primaryContactMail}
+          <h4>{project?.client?.displayName}</h4>
+          {project?.client?.website ?
+            <a target="_blank" href={project?.client?.website}>{project?.client?.website}</a> :
+            <a href={`mailto:${project?.client?.primaryContactMail}`}>
+              {project?.client?.primaryContactMail}
             </a>
           }
         </div>
