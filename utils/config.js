@@ -54,8 +54,8 @@ export function clearSessionCookie(res) {
 export const transporter = nodemailer.createTransport({
   service: "outlook",
   auth: {
-    user: process.env.DevEmail,
-    pass: process.env.DevPassword,
+    user: process.env.devEmail,
+    pass: process.env.devPassword,
   },
 });
 
