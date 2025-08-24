@@ -477,7 +477,7 @@ export async function generateEmailTemplate({ displayName, title, body }) {
 
   <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#F0F0F0;">
     <tr>
-      <td align="center" style="padding:32px 16px;">
+      <td align="center" style="padding:16px;">
 
         <!-- Card -->
         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:450px; background:#ffffff; border-radius:24px; box-shadow:0 15px 35px -20px #0005;">
