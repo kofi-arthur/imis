@@ -468,14 +468,14 @@ export async function generateEmailTemplate({ displayName, title, body }) {
   return `
     <section style="font-family: Segoe UI, Arial, sans-serif; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; background-color: #F0F0F0;">
 
-        <div style="width: 100%; max-width: 450px; margin-block: 2rem; background: white; border-radius: 1.5rem; box-shadow: 0 15px 35px -20px #0005; padding: 1rem; padding-block-end: 2rem;">
+        <div style="width: 100%; max-width: 450px; margin-block: 32px; background: #ffffff !important; border-radius: 24px; box-shadow: 0 15px 35px -20px #0005; padding: 16px; padding-block-end:32px;">
 
             <!-- Header -->
-            <div style=" width: 100%; border-radius: 16px; overflow:hidden; margin-bottom: 1rem;">
+            <div style=" width: 100%; border-radius: 16px; overflow:hidden; margin-bottom: 16px;">
                 <img src="https://imis.wecltd.io/email.png" alt="imis email header" width="100%">
             </div>
 
-            <h2 style="color: #323130; font-size: 2rem; font-weight: 700;margin: 0;">
+            <h2 style="color: #323130; font-size: 32px; font-weight: 700;margin: 0;">
                 ${title || "Notification from imis"}
             </h2>
 
@@ -499,10 +499,10 @@ export async function generateEmailTemplate({ displayName, title, body }) {
             </div>
 
             <!-- Footer -->
-            <p style="font-size: .8rem; line-height: .8rem; color: #605e5c; margin-top: 30px;">
+            <p style="font-size: 12px; line-height: 12px; color: #605e5c; margin-top: 30px;">
                 Please do not reply to this email. It is an automated notification.
             </p>
-            <p style="font-size: .8rem; width: 100%; color: #605e5c;">
+            <p style="font-size: 12px; width: 100%; color: #605e5c;">
                 © ${new Date().getFullYear()} imis.wecltd
             </p>
         </div>
