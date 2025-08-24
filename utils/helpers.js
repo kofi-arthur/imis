@@ -476,7 +476,7 @@ export async function generateEmailTemplate({ displayName, title, body }) {
             <!-- Header -->
             <div style=" width: 100%; border-radius: 1rem; overflow:hidden; margin-bottom: 1rem;
             ">
-                <img src="https://srv432552.hstgr.cloud/images/default/email.png" alt="imis email header" width="100%">
+                <img src="https://imis.wecltd.io/email.png" alt="imis email header" width="100%">
             </div>
 
             <h2 style="color: #323130; font-size: 2rem; font-weight: 700;margin: 0;
