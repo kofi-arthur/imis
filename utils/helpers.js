@@ -496,8 +496,7 @@ export async function generateEmailTemplate({ displayName, title, body }) {
           <div
               style="margin: 25px 0; padding: 20px; background-color: #f8f8f8; border: 1px solid #e1dfdd; border-radius: 4px;">
               <p style="margin: 0; font-size: 15px; color: #201f1e;">
-                  You can view this in <strong><a href="https://imis.wecltd.io" target="_blank"
-                          style="color: #323130; text-decoration: none;">imis</a></strong> for more details.
+                  You can view this in imis for more details.
               </p>
           </div>
 
