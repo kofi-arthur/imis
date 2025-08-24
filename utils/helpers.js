@@ -474,7 +474,6 @@ export async function generateEmailTemplate({ displayName, title, body }) {
           <!-- Header -->
           <div style=" width: 100%; border-radius: 1rem; overflow:hidden; margin-bottom: 1rem;
           ">
-              <img src="https://srv432552.hstgr.cloud/images/default/email.png" alt="imis email header" width="100%">
           </div>
 
           <h2 style="color: #323130; font-size: 2rem; font-weight: 700;margin: 0;
@@ -496,7 +495,8 @@ export async function generateEmailTemplate({ displayName, title, body }) {
           <div
               style="margin: 25px 0; padding: 20px; background-color: #f8f8f8; border: 1px solid #e1dfdd; border-radius: 4px;">
               <p style="margin: 0; font-size: 15px; color: #201f1e;">
-                  You can view this in imis for more details.
+                  You can view this in <strong><a href="https://imis.wecltd.io" target="_blank"
+                          style="color: #323130; text-decoration: none;">imis</a></strong> for more details.
               </p>
           </div>
 
