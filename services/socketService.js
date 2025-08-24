@@ -84,7 +84,7 @@ export async function initializeSocketServer(server) {
             action: "statusChange",
             recipients: projectMembers[projectroom],
             item: item,
-            extra: { type: "project", status, actor: connectionUser },
+            extra: { type: "Project", status, actor: connectionUser },
           });
           logProjectActivity({
             projectId: projectroom,
@@ -106,7 +106,7 @@ export async function initializeSocketServer(server) {
             action: "statusChange",
             recipients: projectMembers[projectroom],
             item: item,
-            extra: { type: "task", status, actor: connectionUser },
+            extra: { type: "Task", status, actor: connectionUser },
           });
           logProjectActivity({
             projectId: projectroom,
@@ -251,7 +251,7 @@ export async function initializeSocketServer(server) {
             (user) => user.id !== connectionUser.id
           ),
           item: commentData,
-          extra: { type: "task", actor: connectionUser },
+          extra: { type: "Task", actor: connectionUser },
         });
 
         // Logs
@@ -913,48 +913,3 @@ export const getActiveUsers = async () => {
   return activeUsers;
 };
 
-// export async function handleTaskAssignment({ actor, projectroom, item }) {
-//   const io = getSocketInstance();
-//   const projectInfo = await getItemInfo(projectroom, "projects");
-
-//   for (const assigneeId of item.assignedTo) {
-//     const isActive = activeUsers[assigneeId];
-
-//     if (isActive) {
-//       // Send real-time notification
-//       io.to(isActive.socketId).emit("newNotification", {
-//         title: `Task Assignment in project ${projectInfo.title}`,
-//         projectroom,
-//         message: `You have been assigned to a task - ${item.title}.`,
-//       });
-//     } else {
-//       // Send email if user is not online
-//       const userInfo = await getUserInfo(assigneeId);
-//       if (!userInfo?.mail) continue;
-
-//       const message = `
-//         <div style="text-align: left;">
-//           <p>Hello ${userInfo.displayName},<br/>
-//             This email was sent to inform you of the information below.
-//           </p>
-//           <h4>
-//             Task <span style="font-weight: bold;">${item.title}</span> has been assigned to
-//             <span style="font-weight: bold;">You</span>.
-//           </h4>
-//           <p style="font-size: 15px;">Please do not respond to this email.</p>
-//           <span style="font-size: 15px; opacity: .8;">IMIS.wecltd</span>&copy;
-//         </div>
-//       `;
-
-//       await emailNotif({
-//         from: process.env.devEmail,
-//         to: userInfo.mail,
-//         subject: `Task Assignment.`,
-//         html: message,
-//       });
-//     }
-//   }
-
-//   // Log activity / push notifications
-//   await notifyUsers("assignTask", item, item.assignedTo, { type: "task" });
-// }
