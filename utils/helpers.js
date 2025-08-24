@@ -485,9 +485,9 @@ export async function generateEmailTemplate({ displayName, title, body }) {
             <td style="padding:16px 16px 32px 16px; border-radius:24px;">
 
               <!-- Header -->
-              <img src="https://imis.wecltd.io/email.png" alt="imis email header" width="100%" style="border-radius:16px; display:block; margin-bottom:16px;">
+              <img src="https://imis.wecltd.io/email.png" alt="imis email header" width="100%" style="border-radius:16px; display:block;">
 
-              <h2 style="color:#323130; font-size:24px; font-weight:700; margin:0; margin-bottom:12px;">
+              <h2 style="color:#323130; font-size:24px; font-weight:700; margin-top:16px; margin-bottom:12px;">
                 ${title || "Notification from imis"}
               </h2>
 
