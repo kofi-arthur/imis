@@ -467,10 +467,11 @@ export async function chunkArray(arr, size) {
 export async function generateEmailTemplate({ displayName, title, body }) {
   return `
     <section style="font-family: Segoe UI, Arial, sans-serif; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; background-color: #F0F0F0;">
-        <div style="width: 100%; max-width: 450px; margin-block: 2rem; background: #ffffff; border-radius: 1.5rem; box-shadow: 0 15px 35px -20px #0005; padding: 1rem; padding-block-end: 2rem;">
+
+        <div style="width: 100%; max-width: 450px; margin-block: 2rem; background: white; border-radius: 1.5rem; box-shadow: 0 15px 35px -20px #0005; padding: 1rem; padding-block-end: 2rem;">
 
             <!-- Header -->
-            <div style=" width: 100%; border-radius: 1rem; overflow:hidden; margin-bottom: 1rem;">
+            <div style=" width: 100%; border-radius: 16px; overflow:hidden; margin-bottom: 1rem;">
                 <img src="https://imis.wecltd.io/email.png" alt="imis email header" width="100%">
             </div>
 
