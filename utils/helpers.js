@@ -466,7 +466,7 @@ export async function chunkArray(arr, size) {
 
 export async function generateEmailTemplate({ displayName, title, body }) {
   return `
-  <section style=" width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; background-color: #F0F0F0;
+  <div style=" width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; background-color: #F0F0F0;
           ">
       <div style=" width: 80%; max-width: 450px; margin-top: 2rem; background: #ffffff; border-radius: 1.5rem; box-shadow: 0 15px 35px -20px #0005; padding: 1rem; padding-block-end: 2rem;
           ">
@@ -509,7 +509,7 @@ export async function generateEmailTemplate({ displayName, title, body }) {
               © ${new Date().getFullYear()} imis.wecltd
           </p>
       </div>
-  </section>
+  </div>
   `;
 }
 
