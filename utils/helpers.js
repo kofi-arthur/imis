@@ -466,45 +466,70 @@ export async function chunkArray(arr, size) {
 
 export async function generateEmailTemplate({ displayName, title, body }) {
   return `
-    <section style="font-family: Segoe UI, Arial, sans-serif; width: 100dvw; display: flex; flex-direction: column; align-items: center; background-color: #F0F0F0;">
+    <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email</title>
+</head>
+<body style="margin:0; padding:0; background-color:#F0F0F0; font-family: Segoe UI, Arial, sans-serif;">
 
-        <div style="width: 100%; max-width: 450px; margin-block: 32px; background: #fff !important; border-radius: 24px; box-shadow: 0 15px 35px -20px #0005; padding: 16px; padding-block-end: 32px;">
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#F0F0F0;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
 
-            <!-- Header -->
-            <img src="https://imis.wecltd.io/email.png" alt="imis email header" width="100%" style=" width: 100%; border-radius: 16px; overflow:hidden; margin-bottom: 16px;">
+        <!-- Card -->
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:450px; background:#ffffff; border-radius:24px; box-shadow:0 15px 35px -20px #0005;">
+          <tr>
+            <td style="padding:16px 16px 32px 16px; border-radius:24px;">
 
-            <h2 style="color: #323130; font-size: 32px; font-weight: 700;margin: 0;">
+              <!-- Header -->
+              <img src="https://imis.wecltd.io/email.png" alt="imis email header" width="100%" style="border-radius:16px; display:block; margin-bottom:16px;">
+
+              <h2 style="color:#323130; font-size:24px; font-weight:700; margin:0; margin-bottom:12px;">
                 ${title || "Notification from imis"}
-            </h2>
+              </h2>
 
-            <!-- Greeting -->
-            <p style="font-size: 16px; color: #323130;">
+              <!-- Greeting -->
+              <p style="font-size:16px; color:#323130; margin:0 0 16px 0;">
                 Hello ${displayName || "User"},
-            </p>
+              </p>
 
-            <!-- Main body -->
-            <p style="font-size: 15px; color: #323130; line-height: 1.6;">
+              <!-- Main body -->
+              <p style="font-size:15px; color:#323130; line-height:1.6; margin:0 0 24px 0;">
                 ${body}
-            </p>
+              </p>
 
-            <!-- Callout card (like OneDrive uses for shared items) -->
-            <div
-                style="margin: 25px 0; padding: 20px; background-color: #f8f8f8; border: 1px solid #e1dfdd; border-radius: 4px;">
-                <p style="margin: 0; font-size: 15px; color: #201f1e;">
-                    You can view this in <strong><a href="https://imis.wecltd.io" target="_blank"
-                            style="color: #323130; text-decoration: none;">imis</a></strong> for more details.
-                </p>
-            </div>
+              <!-- Callout card -->
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:25px 0; background-color:#f8f8f8; border:1px solid #e1dfdd; border-radius:4px;">
+                <tr>
+                  <td style="padding:20px;">
+                    <p style="margin:0; font-size:15px; color:#201f1e;">
+                      You can view this in <strong><a href="https://imis.wecltd.io" target="_blank" style="color:#323130; text-decoration:none;">imis</a></strong> for more details.
+                    </p>
+                  </td>
+                </tr>
+              </table>
 
-            <!-- Footer -->
-            <p style="font-size: 12px; line-height: 12px; color: #605e5c; margin-top: 30px;">
+              <!-- Footer -->
+              <p style="font-size:12px; line-height:16px; color:#605e5c; margin-top:30px; margin-bottom:8px;">
                 Please do not reply to this email. It is an automated notification.
-            </p>
-            <p style="font-size: 12px; width: 100%; color: #605e5c;">
+              </p>
+              <p style="font-size:12px; color:#605e5c; margin:0;">
                 © ${new Date().getFullYear()} imis.wecltd
-            </p>
-        </div>
-    </section>
+              </p>
+
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
   `;
 }
 
