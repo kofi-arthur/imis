@@ -466,53 +466,49 @@ export async function chunkArray(arr, size) {
 
 export async function generateEmailTemplate({ displayName, title, body }) {
   return `
-  <body style=" margin: 0; padding: 0; box-sizing: border-box; width: 100vw; height: 100vh; font-family: Segoe UI, Arial, sans-serif;
-    ">
-    <section style=" width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; background-color: #F0F0F0;
-            ">
-        <div style=" width: 80%; max-width: 450px; margin-top: 2rem; background: #ffffff; border-radius: 1.5rem; box-shadow: 0 15px 35px -20px #0005; padding: 1rem; padding-block-end: 2rem;
-            ">
+  <div style=" width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; background-color: #F0F0F0;
+          ">
+      <div style=" width: 80%; max-width: 450px; margin-block: 2rem; background: #ffffff; border-radius: 1.5rem; box-shadow: 0 15px 35px -20px #0005; padding: 1rem; padding-block-end: 2rem;
+          ">
 
-            <!-- Header -->
-            <div style=" width: 100%; border-radius: 1rem; overflow:hidden; margin-bottom: 1rem;
-            ">
-                <img src="https://srv432552.hstgr.cloud/images/default/email.png" alt="imis email header" width="100%">
-            </div>
+          <!-- Header -->
+          <div style=" width: 100%; border-radius: 1rem; overflow:hidden; margin-bottom: 1rem;
+          ">
+              <img src="https://srv432552.hstgr.cloud/images/default/email.png" alt="imis email header" width="100%">
+          </div>
 
-            <h2 style="color: #323130; font-size: 2rem; font-weight: 700;margin: 0;
-            ">
-                ${title || "Notification from imis"}
-            </h2>
+          <h2 style="color: #323130; font-size: 2rem; font-weight: 700;margin: 0;
+          ">
+              ${title || "Notification from imis"}
+          </h2>
 
-            <!-- Greeting -->
-            <p style="font-size: 16px; color: #323130;">
-                Hello ${displayName || "User"},
-            </p>
+          <!-- Greeting -->
+          <p style="font-size: 16px; color: #323130;">
+              Hello ${displayName || "User"},
+          </p>
 
-            <!-- Main body -->
-            <p style="font-size: 15px; color: #323130; line-height: 1.6;">
-                ${body}
-            </p>
+          <!-- Main body -->
+          <p style="font-size: 15px; color: #323130; line-height: 1.6;">
+              ${body}
+          </p>
 
-            <!-- Callout card (like OneDrive uses for shared items) -->
-            <div
-                style="margin: 25px 0; padding: 20px; background-color: #f8f8f8; border: 1px solid #e1dfdd; border-radius: 4px;">
-                <p style="margin: 0; font-size: 15px; color: #201f1e;">
-                    You can view this in <strong><a href="https://imis.wecltd.io" target="_blank"
-                            style="color: #323130; text-decoration: none;">imis</a></strong> for more details.
-                </p>
-            </div>
+          <!-- Callout card (like OneDrive uses for shared items) -->
+          <div
+              style="margin: 25px 0; padding: 20px; background-color: #f8f8f8; border: 1px solid #e1dfdd; border-radius: 4px;">
+              <p style="margin: 0; font-size: 15px; color: #201f1e;">
+                  You can view this in imis for more details.
+              </p>
+          </div>
 
-            <!-- Footer -->
-            <p style="font-size: .8rem; line-height: .8rem; color: #605e5c; margin-top: 30px;">
-                Please do not reply to this email. It is an automated notification.
-            </p>
-            <p style="font-size: .8rem; width: 100%; color: #605e5c;">
-                © ${new Date().getFullYear()} imis.wecltd
-            </p>
-        </div>
-    </section>
-</body>
+          <!-- Footer -->
+          <p style="font-size: .8rem; line-height: .8rem; color: #605e5c; margin-top: 30px;">
+              Please do not reply to this email. It is an automated notification.
+          </p>
+          <p style="font-size: .8rem; width: 100%; color: #605e5c;">
+              © ${new Date().getFullYear()} imis.wecltd
+          </p>
+      </div>
+  </div>
   `;
 }
 
