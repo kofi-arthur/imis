@@ -466,14 +466,12 @@ export async function chunkArray(arr, size) {
 
 export async function generateEmailTemplate({ displayName, title, body }) {
   return `
-    <section style="font-family: Segoe UI, Arial, sans-serif; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; background-color: #F0F0F0;">
+    <section style="font-family: Segoe UI, Arial, sans-serif; width: 100dvw; display: flex; flex-direction: column; align-items: center; background-color: #F0F0F0;">
 
-        <div style="width: 100%; max-width: 450px; margin-block: 32px; background: #ffffff !important; border-radius: 24px; box-shadow: 0 15px 35px -20px #0005; padding: 16px; padding-block-end:32px;">
+        <div style="width: 100%; max-width: 450px; margin-block: 32px; background: #fff !important; border-radius: 24px; box-shadow: 0 15px 35px -20px #0005; padding: 16px; padding-block-end: 32px;">
 
             <!-- Header -->
-            <div style=" width: 100%; border-radius: 16px; overflow:hidden; margin-bottom: 16px;">
-                <img src="https://imis.wecltd.io/email.png" alt="imis email header" width="100%">
-            </div>
+            <img src="https://imis.wecltd.io/email.png" alt="imis email header" width="100%" style=" width: 100%; border-radius: 16px; overflow:hidden; margin-bottom: 16px;">
 
             <h2 style="color: #323130; font-size: 32px; font-weight: 700;margin: 0;">
                 ${title || "Notification from imis"}
