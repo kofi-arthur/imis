@@ -136,7 +136,7 @@ export async function initializeSocketServer(server) {
           action: "priorityChange",
           recipients: projectMembers[projectroom],
           item: item,
-          extra: { type: "task", priority, actor: connectionUser },
+          extra: { type: "Task", priority, actor: connectionUser },
         });
 
         logProjectActivity({
