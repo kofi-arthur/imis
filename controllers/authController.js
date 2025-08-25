@@ -4,7 +4,7 @@ import {
   setSessionCookie,
   userDB,
 } from "../utils/config.js";
-import { defError, systemID } from "../utils/constants.js";
+import { defError, frontendUrl, systemID } from "../utils/constants.js";
 
 import { getClientIP } from "../utils/helpers/helper.general.js";
 import {
@@ -258,7 +258,7 @@ export const forgotPassword = async (req, res) => {
                                   VALUES (?, ?, ?, false)`;
     await userDB.query(insertTokenQuery, [user.id, token, expiresAt]);
 
-    const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
+    const resetLink = `${frontendUrl}/reset-password?token=${token}`;
 
     const emailBody = `
             <p>Hello ${user.displayName},</p>

@@ -356,6 +356,7 @@ export async function initializeSocketServer(server) {
       }
     });
 
+    //Notification Event
     if (!eventBus.listenerCount("notifyUsers")) {
       eventBus.on(
         "notifyUsers",

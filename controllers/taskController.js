@@ -190,7 +190,7 @@ export const updateProjectTask = async (req, res) => {
     if (newlyAdded.length > 0) {
       eventBus.emit("notifyUsers", {
         action: "assignTask",
-        recipients: newAssignees,
+        recipients: newAssignees.filter((user) => newlyAdded.includes(user.id)),
         item: task,
         extra: { actor: actor },
       });

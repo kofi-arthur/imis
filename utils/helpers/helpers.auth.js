@@ -80,7 +80,7 @@ export const syncToSystemDB = async (user) => {
 
 export async function sendMail(mail, subject, body) {
   const mailOptions = {
-    from: process.env.DevEmail,
+    from: `itdevelopers@wayoeltd.com`,
     to: mail,
     subject: subject,
     html: body,
@@ -88,7 +88,6 @@ export async function sendMail(mail, subject, body) {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully");
   } catch (error) {
     console.error("Error sending email:", error);
   }
