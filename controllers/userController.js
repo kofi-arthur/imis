@@ -1,6 +1,4 @@
-import {
-  eventBus
-} from "../services/socketService.js";
+import { eventBus } from "../services/socketService.js";
 import { imisDB, userDB } from "../utils/config.js";
 import { defError, systemID } from "../utils/constants.js";
 import {
@@ -8,7 +6,7 @@ import {
   getUserInfo,
   getUsersInfoByIds,
   logProjectActivity,
-  logSystem
+  logSystem,
 } from "../utils/helpers.js";
 
 // Fetch all users
@@ -187,8 +185,20 @@ export const addUserToProject = async (req, res) => {
 
   try {
     for (const user of users) {
-      const query = `INSERT INTO projectmembers SET projectId = ?, userId = ?`;
-      await imisDB.query(query, [projectId, user.id]);
+      const existsQuery = `
+  SELECT 1
+  FROM projectmembers
+  WHERE projectId = ? AND userId = ?
+  LIMIT 1
+`;
+      const [exists] = await imisDB.query(existsQuery, [projectId, user.id]);
+
+      if (exists.length === 0) {
+        await imisDB.query(
+          `INSERT IGNORE INTO projectmembers (projectId, userId) VALUES (?, ?)`,
+          [projectId, user.id]
+        );
+      }
 
       await logSystem({
         projectId,
@@ -376,8 +386,9 @@ export const changeProjectOwner = async (req, res) => {
 
     logSystem({
       projectId,
-      details: `changed project owner from ${oldOwner?.displayName || "unknown"
-        } to ${newOwner.displayName}`,
+      details: `changed project owner from ${
+        oldOwner?.displayName || "unknown"
+      } to ${newOwner.displayName}`,
       actor: actor.id,
       version: "client",
       type: "syslog",
@@ -391,7 +402,10 @@ export const changeProjectOwner = async (req, res) => {
       type: "activity",
     });
 
-    return res.json({ message: "Project ownership changed successfully", newOwner: newOwner });
+    return res.json({
+      message: "Project ownership changed successfully",
+      newOwner: newOwner,
+    });
   } catch (err) {
     console.error("Error changing project owner:", err);
     return res.status(500).json({ error: defError });
