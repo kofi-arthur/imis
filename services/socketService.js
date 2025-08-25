@@ -823,7 +823,7 @@ export async function initializeSocketServer(server) {
       );
 
       // Remove from active users
-      delete activeUsers[connectionUser.mail];
+      delete activeUsers[connectionUser.id];
 
       for (const projectId in usersInRooms) {
         const project = usersInRooms[projectId];
