@@ -155,13 +155,13 @@ export const login = async (req, res) => {
       return res.json({ error: "Incorrect email or password" });
     }
 
-    if (
-      !["Production", "IT", "HSE", "HR", "Admin", "Executive"].includes(
-        user.department
-      )
-    ) {
-      return res.json({ error: "Sorry, you are not authorized to login" });
-    }
+    // if (
+    //   !["Production", "IT", "HSE", "HR", "Admin", "Executive"].includes(
+    //     user.department
+    //   )
+    // ) {
+    //   return res.json({ error: "Sorry, you are not authorized to login" });
+    // }
 
     const isPasswordValid = await comparePassword(password, user.password);
 
