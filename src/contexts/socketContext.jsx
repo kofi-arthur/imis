@@ -5,11 +5,13 @@ import io from "socket.io-client";
 import { useAuth } from "./authContext";
 
 import { api } from "../services/api";
+import { useNavigate } from "react-router";
 
 const SocketContext = createContext();
 
 export const SocketProvider = ({ children }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const [socket, setSocket] = useState(null);
 
