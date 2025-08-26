@@ -575,6 +575,11 @@ export async function buildNotificationMessage(action, item, extra) {
         title: "Task Assignment",
         details: `Task - ${item.title} has been assigned to you.`,
       };
+    case "unassignTask":
+      return {
+        title: "Task Unassignment",
+        details: `Task - ${item.title} has been unassigned from you.`,
+      };
     case "comment":
       const taskInfo = await getItemInfo(item.taskId, "tasks");
       return {

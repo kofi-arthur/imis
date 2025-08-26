@@ -420,6 +420,7 @@ export async function initializeSocketServer(server) {
               managerChange: "Alert-User",
               statusChange: "newTaskNotif",
               assignTask: "newTaskNotif",
+              unassignTask: "newTaskNotif",
               priorityChange: "newTaskNotif",
               comment: "newMsgNotif",
               default: "notification",
@@ -428,11 +429,14 @@ export async function initializeSocketServer(server) {
 
             // 5) Emit to online users
             for (const userId of onlineIds) {
-              io.to(activeUsers[userId].socketId).emit(eventName, {
-                roomId: item.projectId || item.roomId || item.id,
-                title,
-                message: details,
-              });
+              if (userId !== extra.actor?.id) {
+                io.to(activeUsers[userId].socketId).emit(eventName, {
+                  roomId: item.projectId || item.roomId || item.id,
+                  title,
+                  message: details,
+                });
+              }
+              return null;
             }
 
             // 6) Email to offline users (batch of 10)

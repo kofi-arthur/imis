@@ -168,11 +168,15 @@ export const updateProjectTask = async (req, res) => {
       task.taskId,
       task.projectId,
     ]);
-    const existingAssignees = assignees[0]?.assignedTo || [];
+    const existingAssignees = await getUsersInfoByIds(assignees[0]?.assignedTo || []);
 
     // Find only newly added assignees
     const newlyAdded = newAssigneeIds.filter(
-      (id) => !existingAssignees.includes(id)
+      (id) => !existingAssignees.map((user) => user.id).includes(id)
+    );
+
+    const newlyRemoved = existingAssignees.filter(
+      (user) => !newAssigneeIds.includes(user.id)
     );
 
     // Store updated list in DB
@@ -191,6 +195,15 @@ export const updateProjectTask = async (req, res) => {
       eventBus.emit("notifyUsers", {
         action: "assignTask",
         recipients: newAssignees.filter((user) => newlyAdded.includes(user.id)),
+        item: task,
+        extra: { actor: actor },
+      });
+    }
+    
+    if(newlyRemoved.length > 0) {
+      eventBus.emit("notifyUsers", {
+        action: "unassignTask",
+        recipients: newlyRemoved,
         item: task,
         extra: { actor: actor },
       });
