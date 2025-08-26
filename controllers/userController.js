@@ -210,7 +210,7 @@ export const addUserToProject = async (req, res) => {
 
       await logSystem({
         projectId,
-        details: `added a user, ${user.displayName} to project - ${projectInfo.workOrderNo}.`,
+        details: `added a user, ${user.displayName} to project - ${projectInfo.projectName}.`,
         actor: actor.id,
         version: "admin",
         type: "syslog",
@@ -386,9 +386,7 @@ export const changeProjectOwner = async (req, res) => {
 
     logSystem({
       projectId,
-      details: `changed project owner from ${
-        oldOwner?.displayName || "unknown"
-      } to ${newOwner.displayName}`,
+      details: `transferred project ownership to ${newOwner.displayName}`,
       actor: actor.id,
       version: "client",
       type: "syslog",
@@ -454,7 +452,7 @@ export const changeUserAccess = async (req, res) => {
 
     logSystem({
       projectId: projectId,
-      details: `changed access for user ${userInfo.displayName}.`,
+      details: `changed access for user, ${userInfo.displayName}.`,
       actor: actor.id,
       version: "client",
       type: "syslog",
