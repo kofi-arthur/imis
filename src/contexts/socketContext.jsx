@@ -1,17 +1,18 @@
+import io from "socket.io-client";
+import { useNavigate } from "react-router";
 import { createContext, useContext, useEffect, useState } from "react";
 
-import io from "socket.io-client";
+import { api } from "../services/api";
 
 import { useAuth } from "./authContext";
 
-import { api } from "../services/api";
-import { useNavigate } from "react-router";
-
 const SocketContext = createContext();
+const frontEndURL = "https://imis.wecltd.io";
 
 export const SocketProvider = ({ children }) => {
-  const { user } = useAuth();
   const navigate = useNavigate();
+
+  const { user } = useAuth();
 
   const [socket, setSocket] = useState(null);
 
@@ -33,6 +34,7 @@ export const SocketProvider = ({ children }) => {
       };
     }
   }, [user]);
+
   // -------------- Notification --------------
   useEffect(() => {
     if (Notification.permission === "granted") {
@@ -68,25 +70,23 @@ export const SocketProvider = ({ children }) => {
         renderNotification(
           notificationData.title,
           notificationData.message,
-          `/project/${notificationData.roomId}/dashboard`
+          `${frontEndURL}/${notificationData.roomId}/dashboard`
         );
       });
 
       socket.on("newMsgNotif", (notificationData) => {
-        console.log(notificationData);
         renderNotification(
           notificationData.title,
           notificationData.message,
-          `${notificationData.roomId}/discussions`
+          `${frontEndURL}/${notificationData.roomId}/discussions`
         );
       });
 
       socket.on("newTaskNotif", (notificationData) => {
-        console.log(notificationData);
         renderNotification(
           notificationData.title,
           notificationData.message,
-          `${notificationData.roomId}/tasks`
+          `${frontEndURL}/${notificationData.roomId}/tasks`
         );
       });
     }
