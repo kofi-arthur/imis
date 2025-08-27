@@ -1,19 +1,19 @@
 import styles from "../../../styles/app/client/projectSettings/general.module.css";
 
+import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
+import { warnToast } from "../../../components/toast";
 import { useProject } from "../../../contexts/projectContext";
+import { LoadingComponent } from "../../../../../iticket-new/src/components/loadingComponents";
+
 import {
-    changeProjectOwner,
+  changeProjectOwner,
   deleteProject,
   fetchCategories,
   fetchprojectMembers,
   updateProject,
 } from "../../../services/api";
-import { warnToast } from "../../../components/toast";
-import { LoadingComponent } from "../../../../../iticket-new/src/components/loadingComponents";
-import { useAuth } from "../../../contexts/authContext";
-import { useNavigate } from "react-router";
 
 const InputComponent = ({ type, placeholder, value, onChange }) => {
   return (
@@ -62,11 +62,6 @@ export default function General() {
     projectCategory: project.projectCategory,
   });
 
-  function handleRenameProject() {
-    console.log(projectInfo.projectName);
-    // TODO: rename project
-  }
-
   const [projectMembers, setProjectMembers] = useState([]);
 
   const [isTransferringProject, setIsTransferringProject] = useState(false);
@@ -101,16 +96,16 @@ export default function General() {
     }
 
     setIsTransferLoading(true);
-    const res = await changeProjectOwner(project.projectId,project.projectOwner?.id,newOwnerId);
-      setIsTransferLoading(false);
+    const res = await changeProjectOwner(project.projectId, project.projectOwner?.id, newOwnerId);
+    setIsTransferLoading(false);
     if (res.success === true) {
-        console.log("Project ownership changed successfully", res.newOwner);
+      console.log("Project ownership changed successfully", res.newOwner);
       setProject((prev) => ({
         ...prev,
         projectOwner: res.newOwner,
       }));
       setIsTransferringProject(false);
-    }else{
+    } else {
       setIsTransferringProject(false);
     }
   }

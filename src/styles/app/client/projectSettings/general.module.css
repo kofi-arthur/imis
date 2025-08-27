@@ -69,7 +69,7 @@
     padding: 0.5rem;
     font-size: 0.9rem;
     resize: none;
-    overflow: hidden;
+    overflow: auto;
   }
 }
 
