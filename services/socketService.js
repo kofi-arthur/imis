@@ -357,7 +357,7 @@ export async function initializeSocketServer(server) {
     });
 
     //Notification Event
-    if (!eventBus.listenerCount("notifyUsers")) {
+     if (!eventBus.listenerCount("notifyUsers")) {
       eventBus.on(
         "notifyUsers",
         async ({ action, recipients, item = {}, extra = {} }) => {
@@ -365,7 +365,9 @@ export async function initializeSocketServer(server) {
             // Normalize recipients into two arrays:
             // 1. recipientIds (for saving & socket)
             // 2. recipientObjects (for emails if needed)
-            const recipientObjects = Array.isArray(recipients)
+            const recipientsData = recipients.filter((r)=> r.id !== extra?.actor.id)
+            
+            const recipientObjects = Array.isArray(recipientsData)
               ? recipients
               : [recipients];
 

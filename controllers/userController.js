@@ -1,4 +1,4 @@
-import { eventBus } from "../services/socketService.js";
+import { eventBus, getActiveUsers } from "../services/socketService.js";
 import { imisDB, userDB } from "../utils/config.js";
 import { defError, systemID } from "../utils/constants.js";
 import {
@@ -247,6 +247,17 @@ export const addUserToProject = async (req, res) => {
         user.permission = userPerm?.[0]?.name || null;
       })
     );
+
+    // const io = await getSocketInstance();
+    // const activeUsers = await getActiveUsers();
+    // if (io) {
+    //   for (const user of users) {
+    //     const connection = activeUsers[user.id];
+    //     if (connection) {
+    //       io.sockets.to(connection.socketId).emit("projectAdded", projectId);
+    //     }
+    //   }
+    // }
 
     eventBus.emit("notifyUsers", {
       action: "grant",
