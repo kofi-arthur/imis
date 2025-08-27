@@ -35,7 +35,7 @@ export const updateTag = async (req, res) => {
   try {
     const [result] = await imisDB.query(query, [tag.name, tag.color, tag.id]);
     if (result.affectedRows === 0) {
-      return res.status(404).json({ message: "Tag not found" });
+      return res.json({ message: "Tag not found" });
     }
     return res.status(200).json({ message: "Tag updated successfully" });
   } catch (err) {
@@ -51,7 +51,7 @@ export const deleteTag = async (req, res) => {
   try {
     const [result] = await imisDB.query(query, [id]);
     if (result.affectedRows === 0) {
-      return res.status(404).json({ message: "Tag not found" });
+      return res.json({ message: "Tag not found" });
     }
     return res.status(200).json({ message: "Tag deleted successfully" });
   } catch (err) {

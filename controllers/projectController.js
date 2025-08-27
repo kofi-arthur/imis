@@ -92,7 +92,7 @@ export const fetchProjectInfo = async (req, res) => {
     );
 
     if (projectRows.length === 0) {
-      return res.status(404).json({ error: "Project not found" });
+      return res.json({ error: "Project not found" });
     }
 
     const project = projectRows[0];

@@ -73,7 +73,7 @@ export const fetchTaskAll = async (req, res) => {
 
   try {
     const [[task]] = await imisDB.query(taskQuery, [taskId]);
-    if (!task) return res.status(404).json({ error: "Task not found" });
+    if (!task) return res.json({ error: "Task not found" });
 
     const [comments] = await imisDB.query(commentsQuery, [taskId]);
     const [attachments] = await imisDB.query(attachmentsQuery, [taskId]);
@@ -243,7 +243,7 @@ export const deleteProjectTask = async (req, res) => {
     const [result] = await imisDB.query(query, [taskId, taskId]);
 
     if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "Task not found" });
+      return res.json({ error: "Task not found" });
     }
 
     logSystem({
@@ -402,7 +402,7 @@ export const deleteTaskAttachment = async (req, res) => {
     const [result] = await imisDB.query(query, [fileId, taskId]);
 
     if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "Attachment not found" });
+      return res.json({ error: "Attachment not found" });
     }
     logSystem({
       projectId: comment.projectId,

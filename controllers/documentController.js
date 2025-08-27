@@ -78,12 +78,12 @@ export const getProjectFilesDetails = async (req, res) => {
 
   try {
     if (!fs.existsSync(folderPath)) {
-      return res.status(404).send({ error: "Folder not found!" });
+      return res.send({ error: "Folder not found!" });
     }
 
     const files = fs.readdirSync(folderPath);
     if (files.length === 0)
-      return res.status(404).send({ error: "No files found." });
+      return res.send({ error: "No files found." });
 
     const filesWithDetails = files.map((file) => {
       const filePath = path.join(folderPath, file);
@@ -251,7 +251,7 @@ export const updateFolder = async (req, res) => {
     );
 
     if (rows.length === 0) {
-      return res.status(404).json({ error: "Document not found" });
+      return res.json({ error: "Document not found" });
     }
 
     const document = rows[0];

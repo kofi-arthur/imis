@@ -362,10 +362,10 @@ export const changeProjectOwner = async (req, res) => {
 
   try {
     const newOwner = await getUserInfo(newOwnerId);
-    const oldOwner = await getUserInfo(oldOwnerId);
+    // const oldOwner = await getUserInfo(oldOwnerId);
 
     if (!newOwner) {
-      return res.status(404).json({ error: "New owner not authorized." });
+      return res.json({ error: "New owner not authorized." });
     }
 
     const [info] = await imisDB.query(
@@ -374,7 +374,7 @@ export const changeProjectOwner = async (req, res) => {
     );
 
     if (info.affectedRows === 0) {
-      return res.status(404).json({ error: "Project not found." });
+      return res.json({ error: "Project not found." });
     }
 
     eventBus.emit("notifyUsers", {
