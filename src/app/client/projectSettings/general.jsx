@@ -11,6 +11,7 @@ import {
   changeProjectOwner,
   deleteProject,
   fetchCategories,
+  fetchClients,
   fetchprojectMembers,
   updateProject,
 } from "../../../services/api";
@@ -55,12 +56,21 @@ export default function General() {
     setCategories(categories);
   }
 
+  async function getClients() {
+    const clientsData = await fetchClients();
+    const clientsInfo = clientsData.map((client) => client.displayName);
+    setClients(clientsInfo);
+  }
+
   useEffect(() => {
     getCategories();
+    getClients();
     resizeTextarea();
+    console.log(project);
   }, []);
 
   const [categories, setCategories] = useState([]);
+  const [clients, setClients] = useState([]);
 
   const [projectInfo, setProjectInfo] = useState({
     projectId: project.projectId,
@@ -183,6 +193,30 @@ export default function General() {
       </section>
 
       <hr />
+
+      {/* <section className={styles.pageSection}>
+        <span className={styles.sectionTitle}>Project Client Information</span>
+
+        <div className={styles.field}>
+          <label htmlFor="projectName">Project Client</label>
+          <SelectComponent
+            value={projectInfo?.client?.displayName}
+            options={clients}
+            onChange={(e) =>
+              setProjectInfo({
+                ...projectInfo,
+                client: e.target.value,
+              })
+            }
+          />
+        </div>
+
+        <button className={styles.saveBtn} onClick={() => console.log(projectInfo)}>
+          Save
+        </button>
+      </section>
+
+      <hr /> */}
 
       <section className={styles.pageSection}>
         <span className={styles.sectionTitle}>Danger Zone</span>
