@@ -234,9 +234,9 @@ const MileStoneViewer = ({ data, onClose }) => {
         </div>
 
         <div className={styles.content}>
-          {data.map((milestone) => (
+          {data.length ? data.map((milestone) => (
             <MilestoneDetail key={milestone.id} milestone={milestone} statusData={milestone.status} />
-          ))}
+          )) : <EmptyComponent title={"No milestones found"} message={"No milestones found or created yet"} />}
         </div>
       </div>
     </section>
@@ -598,7 +598,7 @@ export default function ProjectDashboard() {
             >
               <ErrorComponent
                 title={"No Milestones"}
-                message={"No Milestones Found"}
+                message={"No milestones found or created yet"}
               />
             </div>
           )}
@@ -827,6 +827,7 @@ export default function ProjectDashboard() {
           </div>
         </section>
       </section>
+
       {isViewingMilestones &&
         <MileStoneViewer data={milestonesData} onClose={() => setIsViewingMilestones(false)} />
       }
