@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Avatar } from "../../../components/avatarStack";
 import DeleteConfirmationBox from "../../../components/confirmationBox";
-import { EmptyComponent } from "../../../components/error";
+import { EmptyComponent, ErrorComponent } from "../../../components/error";
 import { RoleComponent } from "../../../components/status";
 import { warnToast } from "../../../components/toast";
 import { useProject } from "../../../contexts/projectContext";
@@ -148,20 +148,34 @@ const AddNewMember = ({ project, projectmembers, onClose }) => {
     }
   }
 
+  const [isAddingMembers, setIsAddingMembers] = useState(false);
+
   // add members functionality
   async function handleAddMembers() {
     if (selectedMembers.length === 0) {
       warnToast("Please select at least one member");
       return;
     }
-    const membersToAdd = selectedMembers.map((id) =>
-      members.find((user) => user.id === id)
-    );
-    const newMembers = await addUserToProject(project.projectId, membersToAdd);
-    if (newMembers.length > 0) {
-      projectmembers.push(...newMembers);
+
+    if (isAddingMembers) return;
+
+    setIsAddingMembers(true);
+
+    try {
+      const membersToAdd = selectedMembers.map((id) =>
+        members.find((user) => user.id === id)
+      );
+      const newMembers = await addUserToProject(project.projectId, membersToAdd);
+      if (newMembers.length > 0) {
+        projectmembers.push(...newMembers);
+      }
+      onClose();
+    } catch (error) {
+      console.log("error adding members", error);
+      return errorToast("An error occured. Please try again later");
+    } finally {
+      setIsAddingMembers(false);
     }
-    onClose();
   }
 
   // close functionality
@@ -235,11 +249,24 @@ const AddNewMember = ({ project, projectmembers, onClose }) => {
                   </div>
                 );
               })}
+          {!isLoading &&
+            members?.length === 0 && (
+              <ErrorComponent title={"No Member Found"} message={"There are no members to add"} />
+            )
+          }
+          {!isLoading &&
+            (searchResults?.length === 0 && members?.length > 0) && (
+              <ErrorComponent title={"No Member Found"} message={"Check your spelling or try a different search term"} />
+            )}
         </section>
 
         <div className={styles.actions}>
-          <button onClick={handleAddMembers} className={styles.addBtn}>
-            Add {selectedMembers?.length > 0 && `(${selectedMembers?.length})`}
+          <button
+            onClick={handleAddMembers}
+            className={styles.addBtn}
+            disabled={selectedMembers?.length === 0 || members?.length === 0}
+          >
+            {isAddingMembers ? "Adding..." : `Add ${selectedMembers?.length > 0 ? selectedMembers?.length : ''}`}
           </button>
           <button onClick={handleClose} className={styles.cancelBtn}>
             Cancel
@@ -540,6 +567,7 @@ export default function TeamMembers() {
     if (res === true) projectMembers.splice(projectMembers.indexOf(user), 1);
     setIsDeletingMember(false);
     setSelectedMember(null);
+    setSelectedMembers([]);
   }
 
   async function handleDeleteBulkMembers() {
@@ -561,7 +589,7 @@ export default function TeamMembers() {
       <div className={styles.titleContainer}>
         <h3 className={styles.title}>
           Project Members
-          <span>{projectMembers.length} users</span>
+          <span>{projectMembers?.length} users</span>
           {selectedMembers.length > 0 && (
             <span className={styles.selectedMembers}>
               {`${selectedMembers.length} selected`}
