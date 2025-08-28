@@ -43,6 +43,12 @@ export default function General() {
   const { project, setProject } = useProject();
   const navigate = useNavigate();
 
+  function resizeTextarea() {
+    const textarea = document.getElementById("projectDescription");
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
+  }
+
   async function getCategories() {
     const categoryData = await fetchCategories();
     const categories = categoryData.map((category) => category.categoryName);
@@ -51,6 +57,7 @@ export default function General() {
 
   useEffect(() => {
     getCategories();
+    resizeTextarea();
   }, []);
 
   const [categories, setCategories] = useState([]);
@@ -144,7 +151,7 @@ export default function General() {
           <label>Project Description</label>
           <textarea
             name="description"
-            id="description"
+            id="projectDescription"
             value={projectInfo.projectDescription}
             onChange={(e) =>
               setProjectInfo({
@@ -152,6 +159,7 @@ export default function General() {
                 projectDescription: e.target.value,
               })
             }
+            onLoad={() => { }}
           ></textarea>
         </div>
 
