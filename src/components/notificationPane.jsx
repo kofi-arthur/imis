@@ -1,4 +1,5 @@
 import styles from "../styles/components/notificationPane.module.css";
+import { EmptyComponent } from "./error";
 
 export const NotificationPane = ({ isActive, onClose }) => {
     return (
@@ -12,7 +13,9 @@ export const NotificationPane = ({ isActive, onClose }) => {
                 </button>
             </div>
 
-            <section className={styles.content}></section>
+            <section className={styles.content}>
+                <EmptyComponent title={"No notifications"} message={"You don't have notifications yet"} />
+            </section>
         </div>
     );
 };
