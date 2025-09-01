@@ -1,25 +1,15 @@
 import axios from "axios";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
-import * as nodemailer from "nodemailer";
 import { v4 as uuidv4 } from "uuid";
 
-import { clearSessionCookie, imisDB, userDB } from "../config.js";
+import { clearSessionCookie, imisDB, transporter, userDB } from "../config.js";
 import { systemID } from "../constants.js";
 import { getClientIP } from "../helpers/helper.general.js";
 import { getToken } from "../microsoftAuth.js";
 
 
 dotenv.config();
-
-// Nodemailer Transporter---------------------------------------------------------------
-export const transporter = nodemailer.createTransport({
-  service: "outlook",
-  auth: {
-    user: process.env.DevEmail,
-    pass: process.env.DevPassword,
-  },
-});
 
 export async function verifyUserOnMicrosoft(mail) {
   const accessToken = await getToken();
