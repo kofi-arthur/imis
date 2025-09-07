@@ -9,6 +9,7 @@ import {
   getItemInfo,
   getProjectMembers,
   getUserInfo,
+  getUsersInfoByIds,
   logProjectActivity,
   logSystem,
   notifyUsers,
