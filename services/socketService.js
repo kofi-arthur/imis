@@ -210,46 +210,11 @@ export async function initializeSocketServer(server) {
           (id) => id !== connectionUser.id
         );
 
-        // Split active vs inactive
-        const activeMembers = filteredRecipients.filter(
-          (id) => activeUsers[id]
-        );
-        const inactiveMembers = filteredRecipients.filter(
-          (id) => !activeUsers[id]
-        );
-
-        // Step 1: Notify all members via socket
-        activeMembers.forEach((userId) => {
-          const socketId = activeUsers[userId].socketId;
-          if (socketId) {
-            socket.to(socketId).emit("newTaskNotif", {
-              title: `New Comment on Task - ${item.title}`,
-              roomId: projectId,
-              message: `${commentData.createdBy.displayName} : ${commentData.details}`,
-            });
-          }
-        });
-
-        // Step 2: For inactive ones, get info for emailing
-        for (const memberId of inactiveMembers) {
-          const userInfo = await getUserInfo(memberId);
-          if (userInfo && userInfo.email) {
-          }
-        }
-
-        // notifyUsers("comment", item, filteredRecipients, {
-        //   type: "Task",
-        //   comment: commentData,
-        //   actor: connectionUser,
-        // });
-
-        const projectMembers = await getProjectMembers(projectId);
+        const taskMembersData = await getUsersInfoByIds(filteredRecipients);
 
         eventBus.emit("notifyUsers", {
           action: "comment",
-          recipients: projectMembers[projectId].filter(
-            (user) => user.id !== connectionUser.id
-          ),
+          recipients: taskMembersData,
           item: commentData,
           extra: { type: "Task", actor: connectionUser },
         });
@@ -446,7 +411,8 @@ export async function initializeSocketServer(server) {
               for (const batch of batches) {
                 await Promise.all(
                   batch.map(async (user) => {
-                    if (!user?.mail || user.mail === "admin@admin.com") return null;
+                    if (!user?.mail || user.mail === "admin@admin.com")
+                      return null;
                     const emailHtml = await generateEmailTemplate({
                       displayName: user.displayName,
                       title,
@@ -918,4 +884,3 @@ export async function getSocketInstance() {
 export const getActiveUsers = async () => {
   return activeUsers;
 };
-
