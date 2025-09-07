@@ -357,7 +357,7 @@ export async function initializeSocketServer(server) {
     });
 
     //Notification Event
-     if (!eventBus.listenerCount("notifyUsers")) {
+    if (!eventBus.listenerCount("notifyUsers")) {
       eventBus.on(
         "notifyUsers",
         async ({ action, recipients, item = {}, extra = {} }) => {
@@ -365,11 +365,13 @@ export async function initializeSocketServer(server) {
             // Normalize recipients into two arrays:
             // 1. recipientIds (for saving & socket)
             // 2. recipientObjects (for emails if needed)
-            const recipientsData = recipients.filter((r)=> r.id !== extra?.actor.id)
-            
+            const recipientsData = recipients.filter(
+              (r) => r.id !== extra?.actor.id
+            );
+
             const recipientObjects = Array.isArray(recipientsData)
-              ? recipients
-              : [recipients];
+              ? recipientsData
+              : [recipientsData];
 
             const recipientIds = recipientObjects.map((r) =>
               typeof r === "object" ? r.id : r
@@ -431,11 +433,11 @@ export async function initializeSocketServer(server) {
 
             // 5) Emit to online users
             for (const userId of onlineIds) {
-                io.to(activeUsers[userId].socketId).emit(eventName, {
-                  roomId: item.projectId || item.roomId || item.id,
-                  title,
-                  message: details,
-                });
+              io.to(activeUsers[userId].socketId).emit(eventName, {
+                roomId: item.projectId || item.id,
+                title,
+                message: details,
+              });
             }
 
             // 6) Email to offline users (batch of 10)
@@ -444,7 +446,7 @@ export async function initializeSocketServer(server) {
               for (const batch of batches) {
                 await Promise.all(
                   batch.map(async (user) => {
-                    if (!user?.mail) return null;
+                    if (!user?.mail || user.mail === "admin@admin.com") return null;
                     const emailHtml = await generateEmailTemplate({
                       displayName: user.displayName,
                       title,
